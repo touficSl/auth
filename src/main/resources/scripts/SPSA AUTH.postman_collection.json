@@ -1,0 +1,4518 @@
+{
+	"info": {
+		"_postman_id": "4483f73d-9989-4790-b030-7ff3217f0b0b",
+		"name": "AUTH",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32443978"
+	},
+	"item": [
+		{
+			"name": "generate token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{apikey}}",
+						"type": "text"
+					},
+					{
+						"key": "apisecret",
+						"value": "{{apisecret}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "{{language}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"grc-admin\",\r\n    \"password\": \"Abc123\",\r\n    \"captchaToken\": \"03AFcWeA5wliH5dLYeNeyY5PqEmGK7VFRSRm_HJaD1QpM-t6Vdqceyp-aiyg6Yx74I8BTz7_vkcXkNGULNaxG8Iq3p0Nbnndh8_-x5chpPKbDjdcsmELIVijrN8MdGBeSAqofvp4FMJtmxM2T73hcP5Vdul7w_z05qyjYOiaASsqoP2KOK3neB0FClbywmRf83Odm3UwaUBDt1OMm6EXjXIdYFs3NoKH8dn6u-9udP9m9tWMWSwPY21sK3GOqtwe6XxUf-yZPWTG3TmL4wR3ORKfVqz2ZzCEFpYHUBPuAWLHb0EhekghhVgvOSAEuQ-WepX-LHr9Cl8H0re1dR44WuJcXdcW3RhnRclUU5UPbBE0wq8QIToQy9KneomDurwuqwLeYbMs5yZcNno8EoidIu_7bzRCLUarece--Gf0EXC5Ev-E39_EGW4KgdQ54oJDKa0fnz0OvE7y7OC4Xn2kQITsTcOsHqvSfCs7QsjD0wfykxdkWEqUWuj_noONu6MQXaf8y-hPrPaiFLCMNs1e3mHKTX6Sd_npEgUZdug3WvSd8uioe_OMR-CS1tc2IuoztMbZCbyE84DUzKqo_aONQuoOSGxYGaQGZTwzIETtDGB7ojTY9baBHyx9cUKQ1fgWdT89IO8oqbH2ow4f8TQFFzQkEqSTEB6yjhJ91XdV2TrjHpI_zhPgShgbeKBBAuZNcluI-7T_z2e7-ckbk3y5NCbSkWjXUU7c9zHIXeXxvNEUmx4PSY6sOQ7itkzozoZGfIlp7ryPcbU2U60Y9cYrRKU6R1gSg9Svus-HhVJ2fXKe3KRSuEX79X7v47TZrwzVAU5Pt8PB3BOrzfA3ikMaz4L-wzuolVYOTBuPU-fKBMVw2WT1RAJGWd8NylxhMDsjxRTwASqVEcXILKw4oH7LWh9WegrVMMc2lna_0WAKsfVwPzZyJlO5DpU6v-f3xEUYpXfG48-lSVwJ0-lsD39MZCOu9VfC6fbUKhvJv3a9vKk0zFMqat6PC0O3615duj5kc6m8GzB7gk-gXueznweX2rv7rSXvrtUbldZizImAKY9wyJtJA4ErnKMppJkXvDtjDa0mGr09jREbIj_9PyAw8e_DoDhGS14FiDlFfBEiFJlgRB-qK0hXO7B9N5y_y_xFagqq7o6vNIA2MlpDJ5e-HnFX0CqkFhPtiK-k3x-vgu0tqoEZNhDK4hLOR381PDjytCV0Ch3SQGmomLl3w8o7h0Vufp-ofzwMLYJGYg5DE4HYGcT2ULBDdBaRJRORGcWefvYy5CHrSYcR-SYP5pOo0A-wnBaml2J2nOTYUNqxB6yQUrm7ESH4rirj02lhnlwCmzOITEDRHgTfgHcOHj9xzRALa4goTRQUIbzyNK26grrRsFk6I4j_k4DCHBLpBobJU8Cb_JOXMdT6yDU9SVD5KHGbys9LxUQ7uBLbd3M4-_DtILI6XgU892t2iOMgOyhklM3gLUP3S_UYjNhcCLGgndVVbHpL0G2Xr4zIbqCy6aArc6VbDRUsVko9_aq1hCbgVFuzkFbEkqo7bsJdfAL_q722F_gxpMqUY7N5mnsQm2ASDPxF8dVKg53PXFmVfyI0AxPL-YOBZ1OdL0nMvIBBH5zN6bVK-j_mso3MdCpEkQuRmR_pYOx6aI9pY5CTLbx423qMFl09ez54aDyjoS6eFBBoHy4NHcXgbmDKJsWEvVhoX7fY_UBW-R9dXWQGV1PCOdMDgwygQ-7XwVtqq6HIzuxgMRcRfW5lILnQ6JtgBSpCU1NRWdC3LMJIReSazqfOlB14_z_J7oYf_mueUuNPS5j-ARDIAqpcblEnXfjt01M8K3aIzOmDnUGcDnHHexXFcmWqr-HqDN4V9721ULF6WPNMCq9aOUajExSiaIWLr4RSA_TjuuNJDkquLH8VW7SmX8GzeH-pBNyVw4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}/api/token/generate",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"token",
+						"generate"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "generate token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"toufic.sleiman\",\r\n    \"password\": \"spsa@2024!@\",\r\n    \"captchaToken\": \"03AFcWeA5wliH5dLYeNeyY5PqEmGK7VFRSRm_HJaD1QpM-t6Vdqceyp-aiyg6Yx74I8BTz7_vkcXkNGULNaxG8Iq3p0Nbnndh8_-x5chpPKbDjdcsmELIVijrN8MdGBeSAqofvp4FMJtmxM2T73hcP5Vdul7w_z05qyjYOiaASsqoP2KOK3neB0FClbywmRf83Odm3UwaUBDt1OMm6EXjXIdYFs3NoKH8dn6u-9udP9m9tWMWSwPY21sK3GOqtwe6XxUf-yZPWTG3TmL4wR3ORKfVqz2ZzCEFpYHUBPuAWLHb0EhekghhVgvOSAEuQ-WepX-LHr9Cl8H0re1dR44WuJcXdcW3RhnRclUU5UPbBE0wq8QIToQy9KneomDurwuqwLeYbMs5yZcNno8EoidIu_7bzRCLUarece--Gf0EXC5Ev-E39_EGW4KgdQ54oJDKa0fnz0OvE7y7OC4Xn2kQITsTcOsHqvSfCs7QsjD0wfykxdkWEqUWuj_noONu6MQXaf8y-hPrPaiFLCMNs1e3mHKTX6Sd_npEgUZdug3WvSd8uioe_OMR-CS1tc2IuoztMbZCbyE84DUzKqo_aONQuoOSGxYGaQGZTwzIETtDGB7ojTY9baBHyx9cUKQ1fgWdT89IO8oqbH2ow4f8TQFFzQkEqSTEB6yjhJ91XdV2TrjHpI_zhPgShgbeKBBAuZNcluI-7T_z2e7-ckbk3y5NCbSkWjXUU7c9zHIXeXxvNEUmx4PSY6sOQ7itkzozoZGfIlp7ryPcbU2U60Y9cYrRKU6R1gSg9Svus-HhVJ2fXKe3KRSuEX79X7v47TZrwzVAU5Pt8PB3BOrzfA3ikMaz4L-wzuolVYOTBuPU-fKBMVw2WT1RAJGWd8NylxhMDsjxRTwASqVEcXILKw4oH7LWh9WegrVMMc2lna_0WAKsfVwPzZyJlO5DpU6v-f3xEUYpXfG48-lSVwJ0-lsD39MZCOu9VfC6fbUKhvJv3a9vKk0zFMqat6PC0O3615duj5kc6m8GzB7gk-gXueznweX2rv7rSXvrtUbldZizImAKY9wyJtJA4ErnKMppJkXvDtjDa0mGr09jREbIj_9PyAw8e_DoDhGS14FiDlFfBEiFJlgRB-qK0hXO7B9N5y_y_xFagqq7o6vNIA2MlpDJ5e-HnFX0CqkFhPtiK-k3x-vgu0tqoEZNhDK4hLOR381PDjytCV0Ch3SQGmomLl3w8o7h0Vufp-ofzwMLYJGYg5DE4HYGcT2ULBDdBaRJRORGcWefvYy5CHrSYcR-SYP5pOo0A-wnBaml2J2nOTYUNqxB6yQUrm7ESH4rirj02lhnlwCmzOITEDRHgTfgHcOHj9xzRALa4goTRQUIbzyNK26grrRsFk6I4j_k4DCHBLpBobJU8Cb_JOXMdT6yDU9SVD5KHGbys9LxUQ7uBLbd3M4-_DtILI6XgU892t2iOMgOyhklM3gLUP3S_UYjNhcCLGgndVVbHpL0G2Xr4zIbqCy6aArc6VbDRUsVko9_aq1hCbgVFuzkFbEkqo7bsJdfAL_q722F_gxpMqUY7N5mnsQm2ASDPxF8dVKg53PXFmVfyI0AxPL-YOBZ1OdL0nMvIBBH5zN6bVK-j_mso3MdCpEkQuRmR_pYOx6aI9pY5CTLbx423qMFl09ez54aDyjoS6eFBBoHy4NHcXgbmDKJsWEvVhoX7fY_UBW-R9dXWQGV1PCOdMDgwygQ-7XwVtqq6HIzuxgMRcRfW5lILnQ6JtgBSpCU1NRWdC3LMJIReSazqfOlB14_z_J7oYf_mueUuNPS5j-ARDIAqpcblEnXfjt01M8K3aIzOmDnUGcDnHHexXFcmWqr-HqDN4V9721ULF6WPNMCq9aOUajExSiaIWLr4RSA_TjuuNJDkquLH8VW7SmX8GzeH-pBNyVw4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/token/generate",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"token",
+								"generate"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 23 Sep 2024 11:00:00 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 42,\n    \"username\": \"toufic.sleiman\",\n    \"email\": \"Toufic.Sleiman@spsa.shj.ae\",\n    \"role\": \"admin\",\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJWRVJJRllfT1RQX1RPS0VOX3RvdWZpYy5zbGVpbWFuIiwiaWF0IjoxNzI3MDg5MjAwLCJleHAiOjE3MjcxNzU2MDB9.zNUxBLss5TO8R_Jhekvtiu4uhGnj2TVJc-yl1O6XelY\"\n}"
+				},
+				{
+					"name": "generate token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"toufic.sleiman\",\r\n    \"password\": \"spsa@2024!@\",\r\n    \"captchaToken\": \"03AFcWeA5wliH5dLYeNeyY5PqEmGK7VFRSRm_HJaD1QpM-t6Vdqceyp-aiyg6Yx74I8BTz7_vkcXkNGULNaxG8Iq3p0Nbnndh8_-x5chpPKbDjdcsmELIVijrN8MdGBeSAqofvp4FMJtmxM2T73hcP5Vdul7w_z05qyjYOiaASsqoP2KOK3neB0FClbywmRf83Odm3UwaUBDt1OMm6EXjXIdYFs3NoKH8dn6u-9udP9m9tWMWSwPY21sK3GOqtwe6XxUf-yZPWTG3TmL4wR3ORKfVqz2ZzCEFpYHUBPuAWLHb0EhekghhVgvOSAEuQ-WepX-LHr9Cl8H0re1dR44WuJcXdcW3RhnRclUU5UPbBE0wq8QIToQy9KneomDurwuqwLeYbMs5yZcNno8EoidIu_7bzRCLUarece--Gf0EXC5Ev-E39_EGW4KgdQ54oJDKa0fnz0OvE7y7OC4Xn2kQITsTcOsHqvSfCs7QsjD0wfykxdkWEqUWuj_noONu6MQXaf8y-hPrPaiFLCMNs1e3mHKTX6Sd_npEgUZdug3WvSd8uioe_OMR-CS1tc2IuoztMbZCbyE84DUzKqo_aONQuoOSGxYGaQGZTwzIETtDGB7ojTY9baBHyx9cUKQ1fgWdT89IO8oqbH2ow4f8TQFFzQkEqSTEB6yjhJ91XdV2TrjHpI_zhPgShgbeKBBAuZNcluI-7T_z2e7-ckbk3y5NCbSkWjXUU7c9zHIXeXxvNEUmx4PSY6sOQ7itkzozoZGfIlp7ryPcbU2U60Y9cYrRKU6R1gSg9Svus-HhVJ2fXKe3KRSuEX79X7v47TZrwzVAU5Pt8PB3BOrzfA3ikMaz4L-wzuolVYOTBuPU-fKBMVw2WT1RAJGWd8NylxhMDsjxRTwASqVEcXILKw4oH7LWh9WegrVMMc2lna_0WAKsfVwPzZyJlO5DpU6v-f3xEUYpXfG48-lSVwJ0-lsD39MZCOu9VfC6fbUKhvJv3a9vKk0zFMqat6PC0O3615duj5kc6m8GzB7gk-gXueznweX2rv7rSXvrtUbldZizImAKY9wyJtJA4ErnKMppJkXvDtjDa0mGr09jREbIj_9PyAw8e_DoDhGS14FiDlFfBEiFJlgRB-qK0hXO7B9N5y_y_xFagqq7o6vNIA2MlpDJ5e-HnFX0CqkFhPtiK-k3x-vgu0tqoEZNhDK4hLOR381PDjytCV0Ch3SQGmomLl3w8o7h0Vufp-ofzwMLYJGYg5DE4HYGcT2ULBDdBaRJRORGcWefvYy5CHrSYcR-SYP5pOo0A-wnBaml2J2nOTYUNqxB6yQUrm7ESH4rirj02lhnlwCmzOITEDRHgTfgHcOHj9xzRALa4goTRQUIbzyNK26grrRsFk6I4j_k4DCHBLpBobJU8Cb_JOXMdT6yDU9SVD5KHGbys9LxUQ7uBLbd3M4-_DtILI6XgU892t2iOMgOyhklM3gLUP3S_UYjNhcCLGgndVVbHpL0G2Xr4zIbqCy6aArc6VbDRUsVko9_aq1hCbgVFuzkFbEkqo7bsJdfAL_q722F_gxpMqUY7N5mnsQm2ASDPxF8dVKg53PXFmVfyI0AxPL-YOBZ1OdL0nMvIBBH5zN6bVK-j_mso3MdCpEkQuRmR_pYOx6aI9pY5CTLbx423qMFl09ez54aDyjoS6eFBBoHy4NHcXgbmDKJsWEvVhoX7fY_UBW-R9dXWQGV1PCOdMDgwygQ-7XwVtqq6HIzuxgMRcRfW5lILnQ6JtgBSpCU1NRWdC3LMJIReSazqfOlB14_z_J7oYf_mueUuNPS5j-ARDIAqpcblEnXfjt01M8K3aIzOmDnUGcDnHHexXFcmWqr-HqDN4V9721ULF6WPNMCq9aOUajExSiaIWLr4RSA_TjuuNJDkquLH8VW7SmX8GzeH-pBNyVw4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/token/generate",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"token",
+								"generate"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Oct 2024 10:57:26 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 46,\n    \"username\": \"toufic.sleiman\",\n    \"email\": \"toufic.sleiman@spsa.shj.ae\",\n    \"role\": \"Admin\",\n    \"refreshtoken\": null,\n    \"key\": null,\n    \"sendsms\": false,\n    \"accessexpirydate\": \"01-10-2024 16:57\",\n    \"refreshexpirydate\": null,\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJWRVJJRllfT1RQX1RPS0VOX3RvdWZpYy5zbGVpbWFuIiwiaWF0IjoxNzI3NzgwMjQ2LCJleHAiOjE3Mjc3ODExNDZ9.vd3bencFV6M5kKbmDdxVRU-i5dHZlMvLG4PEghErT_0\"\n}"
+				}
+			]
+		},
+		{
+			"name": "verify token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{accesstoken}}",
+						"type": "text"
+					},
+					{
+						"key": "apikey",
+						"value": "{{apikey}}",
+						"type": "text"
+					},
+					{
+						"key": "apisecret",
+						"value": "{{apisecret}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "{{username}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/api/token/verify",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"token",
+						"verify"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1Mjc5MDQzLCJleHAiOjE3MjUzNjU0NDN9.PT5eWloQVXyGzdRhf9DkeBvR1w_P7Trelo-JByqWcd4ss",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"status\": \"Failed\",\n    \"message\": \"Invalid token\",\n    \"code\": 104\n}"
+				},
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1NDQ4Mjk1LCJleHAiOjE3MjU1MzQ2OTV9.vlDxAedPJR0qMXs4bEARuW6_TLmcAb_k-6rrBlq3Ybc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:47 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user_id\": 11,\n    \"first_name\": \"Obaid\",\n    \"last_name\": \"Bawazir\",\n    \"username\": \"obaid.bawazir\",\n    \"password\": null,\n    \"user_role\": \"SC_Inspection\",\n    \"email\": \"obaid.bawazir@spsa.shj.ae\",\n    \"mobile_no\": null,\n    \"hire_date\": null,\n    \"salary\": 0,\n    \"first_name_ar\": null,\n    \"last_name_ar\": null,\n    \"date_time\": \"2024-09-02T10:28:34.000+00:00\",\n    \"otp\": null,\n    \"authorizedapis\": []\n}"
+				},
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fdG91ZmljLnNsZWltYW4iLCJpYXQiOjE3MjcyNTQxNzYsImV4cCI6MTcyNzI2MTM3Nn0.hy1V4pSpEFiKkRRmpyj4qNVJ2QRqZFkUPokTirGEEBc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "toufic.sleiman",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/token/verify",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 25 Sep 2024 08:59:45 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"status\": \"Failed\",\n    \"message\": \"Token is revoked\",\n    \"code\": 114\n}"
+				}
+			]
+		},
+		{
+			"name": "refresh token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{apikey}}",
+						"type": "text"
+					},
+					{
+						"key": "apisecret",
+						"value": "{{apisecret}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "{{username}}",
+						"type": "text"
+					},
+					{
+						"key": "token",
+						"value": "{{refreshtoken}}",
+						"type": "text"
+					},
+					{
+						"key": "key",
+						"value": "{{refreshkey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/api/token/refresh",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"token",
+						"refresh"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1Mjc5MDQzLCJleHAiOjE3MjUzNjU0NDN9.PT5eWloQVXyGzdRhf9DkeBvR1w_P7Trelo-JByqWcd4ss",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"status\": \"Failed\",\n    \"message\": \"Invalid token\",\n    \"code\": 104\n}"
+				},
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1NDQ4Mjk1LCJleHAiOjE3MjU1MzQ2OTV9.vlDxAedPJR0qMXs4bEARuW6_TLmcAb_k-6rrBlq3Ybc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:47 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user_id\": 11,\n    \"first_name\": \"Obaid\",\n    \"last_name\": \"Bawazir\",\n    \"username\": \"obaid.bawazir\",\n    \"password\": null,\n    \"user_role\": \"SC_Inspection\",\n    \"email\": \"obaid.bawazir@spsa.shj.ae\",\n    \"mobile_no\": null,\n    \"hire_date\": null,\n    \"salary\": 0,\n    \"first_name_ar\": null,\n    \"last_name_ar\": null,\n    \"date_time\": \"2024-09-02T10:28:34.000+00:00\",\n    \"otp\": null,\n    \"authorizedapis\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "revoke token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{apikey}}",
+						"type": "text"
+					},
+					{
+						"key": "apisecret",
+						"value": "{{apisecret}}",
+						"type": "text"
+					},
+					{
+						"key": "token",
+						"value": "{{refreshtoken}}",
+						"type": "text"
+					},
+					{
+						"key": "key",
+						"value": "{{refreshkey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/api/token/revoke",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"token",
+						"revoke"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1Mjc5MDQzLCJleHAiOjE3MjUzNjU0NDN9.PT5eWloQVXyGzdRhf9DkeBvR1w_P7Trelo-JByqWcd4ss",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"status\": \"Failed\",\n    \"message\": \"Invalid token\",\n    \"code\": 104\n}"
+				},
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1NDQ4Mjk1LCJleHAiOjE3MjU1MzQ2OTV9.vlDxAedPJR0qMXs4bEARuW6_TLmcAb_k-6rrBlq3Ybc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:47 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user_id\": 11,\n    \"first_name\": \"Obaid\",\n    \"last_name\": \"Bawazir\",\n    \"username\": \"obaid.bawazir\",\n    \"password\": null,\n    \"user_role\": \"SC_Inspection\",\n    \"email\": \"obaid.bawazir@spsa.shj.ae\",\n    \"mobile_no\": null,\n    \"hire_date\": null,\n    \"salary\": 0,\n    \"first_name_ar\": null,\n    \"last_name_ar\": null,\n    \"date_time\": \"2024-09-02T10:28:34.000+00:00\",\n    \"otp\": null,\n    \"authorizedapis\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "send otp",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJWRVJJRllfT1RQX1RPS0VOX3RvdWZpYy5zbGVpbWFuIiwiaWF0IjoxNzI3MzI2MDE2LCJleHAiOjE3MjczMzMyMTZ9.5946vQnZp74OZbNhYMWKUxB9k7uk9PfT71hSc5id6ok",
+						"type": "text"
+					},
+					{
+						"key": "apikey",
+						"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+						"type": "text"
+					},
+					{
+						"key": "apisecret",
+						"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "toufic.sleiman",
+						"type": "text"
+					},
+					{
+						"key": "type",
+						"value": "MAIL",
+						"description": "MAIL / SMS",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://cert.spsa.shj.ae/auth/api/token/send/otp",
+					"protocol": "https",
+					"host": [
+						"cert",
+						"spsa",
+						"shj",
+						"ae"
+					],
+					"path": [
+						"auth",
+						"api",
+						"token",
+						"send",
+						"otp"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1Mjc5MDQzLCJleHAiOjE3MjUzNjU0NDN9.PT5eWloQVXyGzdRhf9DkeBvR1w_P7Trelo-JByqWcd4ss",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"status\": \"Failed\",\n    \"message\": \"Invalid token\",\n    \"code\": 104\n}"
+				},
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1NDQ4Mjk1LCJleHAiOjE3MjU1MzQ2OTV9.vlDxAedPJR0qMXs4bEARuW6_TLmcAb_k-6rrBlq3Ybc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:47 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user_id\": 11,\n    \"first_name\": \"Obaid\",\n    \"last_name\": \"Bawazir\",\n    \"username\": \"obaid.bawazir\",\n    \"password\": null,\n    \"user_role\": \"SC_Inspection\",\n    \"email\": \"obaid.bawazir@spsa.shj.ae\",\n    \"mobile_no\": null,\n    \"hire_date\": null,\n    \"salary\": 0,\n    \"first_name_ar\": null,\n    \"last_name_ar\": null,\n    \"date_time\": \"2024-09-02T10:28:34.000+00:00\",\n    \"otp\": null,\n    \"authorizedapis\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "verify otp",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{accesstoken}}",
+						"type": "text"
+					},
+					{
+						"key": "apikey",
+						"value": "{{apikey}}",
+						"type": "text"
+					},
+					{
+						"key": "apisecret",
+						"value": "{{apisecret}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "{{username}}",
+						"type": "text"
+					},
+					{
+						"key": "otp",
+						"value": "189767",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/api/token/verify/otp",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"token",
+						"verify",
+						"otp"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1Mjc5MDQzLCJleHAiOjE3MjUzNjU0NDN9.PT5eWloQVXyGzdRhf9DkeBvR1w_P7Trelo-JByqWcd4ss",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"status\": \"Failed\",\n    \"message\": \"Invalid token\",\n    \"code\": 104\n}"
+				},
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1NDQ4Mjk1LCJleHAiOjE3MjU1MzQ2OTV9.vlDxAedPJR0qMXs4bEARuW6_TLmcAb_k-6rrBlq3Ybc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:47 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user_id\": 11,\n    \"first_name\": \"Obaid\",\n    \"last_name\": \"Bawazir\",\n    \"username\": \"obaid.bawazir\",\n    \"password\": null,\n    \"user_role\": \"SC_Inspection\",\n    \"email\": \"obaid.bawazir@spsa.shj.ae\",\n    \"mobile_no\": null,\n    \"hire_date\": null,\n    \"salary\": 0,\n    \"first_name_ar\": null,\n    \"last_name_ar\": null,\n    \"date_time\": \"2024-09-02T10:28:34.000+00:00\",\n    \"otp\": null,\n    \"authorizedapis\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "inspection",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{accesstoken}}",
+						"type": "text"
+					},
+					{
+						"key": "apikey",
+						"value": "{{apikey}}",
+						"type": "text"
+					},
+					{
+						"key": "apisecret",
+						"value": "{{apisecret}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "{{username}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/api/sms",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"sms"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1Mjc5MDQzLCJleHAiOjE3MjUzNjU0NDN9.PT5eWloQVXyGzdRhf9DkeBvR1w_P7Trelo-JByqWcd4ss",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"status\": \"Failed\",\n    \"message\": \"Invalid token\",\n    \"code\": 104\n}"
+				},
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1NDQ4Mjk1LCJleHAiOjE3MjU1MzQ2OTV9.vlDxAedPJR0qMXs4bEARuW6_TLmcAb_k-6rrBlq3Ybc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:47 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user_id\": 11,\n    \"first_name\": \"Obaid\",\n    \"last_name\": \"Bawazir\",\n    \"username\": \"obaid.bawazir\",\n    \"password\": null,\n    \"user_role\": \"SC_Inspection\",\n    \"email\": \"obaid.bawazir@spsa.shj.ae\",\n    \"mobile_no\": null,\n    \"hire_date\": null,\n    \"salary\": 0,\n    \"first_name_ar\": null,\n    \"last_name_ar\": null,\n    \"date_time\": \"2024-09-02T10:28:34.000+00:00\",\n    \"otp\": null,\n    \"authorizedapis\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "menu list",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{accesstoken}}",
+						"type": "text"
+					},
+					{
+						"key": "apikey",
+						"value": "{{apikey}}",
+						"type": "text"
+					},
+					{
+						"key": "apisecret",
+						"value": "{{apisecret}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "{{username}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "{{language}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/api/user/menu/list",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"menu",
+						"list"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "inspection Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1NDQ4Mjk1LCJleHAiOjE3MjU1MzQ2OTV9.vlDxAedPJR0qMXs4bEARuW6_TLmcAb_k-6rrBlq3Ybc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 04:46:32 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"headers\": {},\n    \"body\": {\n        \"success\": false,\n        \"status\": \"Failed\",\n        \"message\": \"Invalid token\",\n        \"code\": 104\n    },\n    \"status\": \"OK\",\n    \"statusCode\": \"OK\",\n    \"statusCodeValue\": 200\n}"
+				},
+				{
+					"name": "inspection Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fdG91ZmljLnNsZWltYW4iLCJpYXQiOjE3MjczMjYxMzMsImV4cCI6MTcyNzMzMzMzM30.3zvHLtD3QV_zC4PD2Y8GNJA6wxm2YRzRxc6N6ORejKQ",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "toufic.sleiman",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 04:49:08 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"headers\": {},\n    \"body\": {\n        \"success\": false,\n        \"status\": \"Failed\",\n        \"message\": \"Not authorized to use the http://cert.spsa.shj.ae/auth/api/menu/list API\",\n        \"code\": 401\n    },\n    \"status\": \"OK\",\n    \"statusCode\": \"OK\",\n    \"statusCodeValue\": 200\n}"
+				},
+				{
+					"name": "inspection Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fdG91ZmljLnNsZWltYW4iLCJpYXQiOjE3MjczMjYxMzMsImV4cCI6MTcyNzMzMzMzM30.3zvHLtD3QV_zC4PD2Y8GNJA6wxm2YRzRxc6N6ORejKQ",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "toufic.sleiman",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 04:56:45 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"code\": \"home\",\n        \"name\": \"Home\",\n        \"link\": \"/index\",\n        \"date_time\": \"2024-09-26T04:53:29.000+00:00\",\n        \"submenu\": [\n            {\n                \"code\": \"test1\",\n                \"name\": \"test1\",\n                \"link\": \"/test1\",\n                \"date_time\": \"2024-09-26T04:55:16.000+00:00\",\n                \"submenu\": [\n                    {\n                        \"code\": \"test1.1\",\n                        \"name\": \"test1.1\",\n                        \"link\": \"/test1.1\",\n                        \"date_time\": \"2024-09-26T04:56:26.000+00:00\",\n                        \"submenu\": []\n                    }\n                ]\n            }\n        ]\n    }\n]"
+				},
+				{
+					"name": "menu list",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fdG91ZmljLnNsZWltYW4iLCJpYXQiOjE3MjczMjYxMzMsImV4cCI6MTcyNzMzMzMzM30.3zvHLtD3QV_zC4PD2Y8GNJA6wxm2YRzRxc6N6ORejKQ",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "toufic.sleiman",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 05:05:10 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"code\": \"home\",\n        \"name\": \"Home\",\n        \"link\": \"/index\",\n        \"date_time\": \"2024-09-26T04:53:29.000+00:00\",\n        \"submenu\": [\n            {\n                \"code\": \"test1\",\n                \"name\": \"test1\",\n                \"link\": \"/test1\",\n                \"date_time\": \"2024-09-26T04:55:16.000+00:00\",\n                \"submenu\": []\n            }\n        ]\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "authorization",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{accesstoken}}",
+						"type": "text"
+					},
+					{
+						"key": "apikey",
+						"value": "{{apikey}}",
+						"type": "text"
+					},
+					{
+						"key": "apisecret",
+						"value": "{{apisecret}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "{{username}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "{{language}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/api/user/authorization",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"authorization"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "inspection Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1NDQ4Mjk1LCJleHAiOjE3MjU1MzQ2OTV9.vlDxAedPJR0qMXs4bEARuW6_TLmcAb_k-6rrBlq3Ybc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 04:46:32 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"headers\": {},\n    \"body\": {\n        \"success\": false,\n        \"status\": \"Failed\",\n        \"message\": \"Invalid token\",\n        \"code\": 104\n    },\n    \"status\": \"OK\",\n    \"statusCode\": \"OK\",\n    \"statusCodeValue\": 200\n}"
+				},
+				{
+					"name": "inspection Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fdG91ZmljLnNsZWltYW4iLCJpYXQiOjE3MjczMjYxMzMsImV4cCI6MTcyNzMzMzMzM30.3zvHLtD3QV_zC4PD2Y8GNJA6wxm2YRzRxc6N6ORejKQ",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "toufic.sleiman",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 04:49:08 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"headers\": {},\n    \"body\": {\n        \"success\": false,\n        \"status\": \"Failed\",\n        \"message\": \"Not authorized to use the http://cert.spsa.shj.ae/auth/api/menu/list API\",\n        \"code\": 401\n    },\n    \"status\": \"OK\",\n    \"statusCode\": \"OK\",\n    \"statusCodeValue\": 200\n}"
+				},
+				{
+					"name": "inspection Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fdG91ZmljLnNsZWltYW4iLCJpYXQiOjE3MjczMjYxMzMsImV4cCI6MTcyNzMzMzMzM30.3zvHLtD3QV_zC4PD2Y8GNJA6wxm2YRzRxc6N6ORejKQ",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "toufic.sleiman",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 04:56:45 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"code\": \"home\",\n        \"name\": \"Home\",\n        \"link\": \"/index\",\n        \"date_time\": \"2024-09-26T04:53:29.000+00:00\",\n        \"submenu\": [\n            {\n                \"code\": \"test1\",\n                \"name\": \"test1\",\n                \"link\": \"/test1\",\n                \"date_time\": \"2024-09-26T04:55:16.000+00:00\",\n                \"submenu\": [\n                    {\n                        \"code\": \"test1.1\",\n                        \"name\": \"test1.1\",\n                        \"link\": \"/test1.1\",\n                        \"date_time\": \"2024-09-26T04:56:26.000+00:00\",\n                        \"submenu\": []\n                    }\n                ]\n            }\n        ]\n    }\n]"
+				},
+				{
+					"name": "menu list",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fdG91ZmljLnNsZWltYW4iLCJpYXQiOjE3MjczMjYxMzMsImV4cCI6MTcyNzMzMzMzM30.3zvHLtD3QV_zC4PD2Y8GNJA6wxm2YRzRxc6N6ORejKQ",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "toufic.sleiman",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 05:05:10 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"code\": \"home\",\n        \"name\": \"Home\",\n        \"link\": \"/index\",\n        \"date_time\": \"2024-09-26T04:53:29.000+00:00\",\n        \"submenu\": [\n            {\n                \"code\": \"test1\",\n                \"name\": \"test1\",\n                \"link\": \"/test1\",\n                \"date_time\": \"2024-09-26T04:55:16.000+00:00\",\n                \"submenu\": []\n            }\n        ]\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{accesstoken}}",
+						"type": "text"
+					},
+					{
+						"key": "apikey",
+						"value": "{{apikey}}",
+						"type": "text"
+					},
+					{
+						"key": "apisecret",
+						"value": "{{apisecret}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "{{username}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "{{language}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"\",\r\n    \"last_name\": \"\",\r\n    \"username\": \"\",\r\n    \"password\": \"\",\r\n    \"user_role\": \"\",\r\n    \"email\": \"\",\r\n    \"mobile_no\": \"\",\r\n    \"hire_date\": \"\",\r\n    \"salary\": \"\",\r\n    \"first_name_ar\": \"\",\r\n    \"last_name_ar\": \"\",\r\n    \"captchaToken\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}/api/admin/user/register",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"admin",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1Mjc5MDQzLCJleHAiOjE3MjUzNjU0NDN9.PT5eWloQVXyGzdRhf9DkeBvR1w_P7Trelo-JByqWcd4ss",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"status\": \"Failed\",\n    \"message\": \"Invalid token\",\n    \"code\": 104\n}"
+				},
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1NDQ4Mjk1LCJleHAiOjE3MjU1MzQ2OTV9.vlDxAedPJR0qMXs4bEARuW6_TLmcAb_k-6rrBlq3Ybc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:47 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user_id\": 11,\n    \"first_name\": \"Obaid\",\n    \"last_name\": \"Bawazir\",\n    \"username\": \"obaid.bawazir\",\n    \"password\": null,\n    \"user_role\": \"SC_Inspection\",\n    \"email\": \"obaid.bawazir@spsa.shj.ae\",\n    \"mobile_no\": null,\n    \"hire_date\": null,\n    \"salary\": 0,\n    \"first_name_ar\": null,\n    \"last_name_ar\": null,\n    \"date_time\": \"2024-09-02T10:28:34.000+00:00\",\n    \"otp\": null,\n    \"authorizedapis\": []\n}"
+				},
+				{
+					"name": "inspection Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1NDQ4Mjk1LCJleHAiOjE3MjU1MzQ2OTV9.vlDxAedPJR0qMXs4bEARuW6_TLmcAb_k-6rrBlq3Ybc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 04:46:32 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"headers\": {},\n    \"body\": {\n        \"success\": false,\n        \"status\": \"Failed\",\n        \"message\": \"Invalid token\",\n        \"code\": 104\n    },\n    \"status\": \"OK\",\n    \"statusCode\": \"OK\",\n    \"statusCodeValue\": 200\n}"
+				},
+				{
+					"name": "inspection Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fdG91ZmljLnNsZWltYW4iLCJpYXQiOjE3MjczMjYxMzMsImV4cCI6MTcyNzMzMzMzM30.3zvHLtD3QV_zC4PD2Y8GNJA6wxm2YRzRxc6N6ORejKQ",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "toufic.sleiman",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 04:49:08 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"headers\": {},\n    \"body\": {\n        \"success\": false,\n        \"status\": \"Failed\",\n        \"message\": \"Not authorized to use the http://cert.spsa.shj.ae/auth/api/menu/list API\",\n        \"code\": 401\n    },\n    \"status\": \"OK\",\n    \"statusCode\": \"OK\",\n    \"statusCodeValue\": 200\n}"
+				},
+				{
+					"name": "inspection Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fdG91ZmljLnNsZWltYW4iLCJpYXQiOjE3MjczMjYxMzMsImV4cCI6MTcyNzMzMzMzM30.3zvHLtD3QV_zC4PD2Y8GNJA6wxm2YRzRxc6N6ORejKQ",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "toufic.sleiman",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 04:56:45 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"code\": \"home\",\n        \"name\": \"Home\",\n        \"link\": \"/index\",\n        \"date_time\": \"2024-09-26T04:53:29.000+00:00\",\n        \"submenu\": [\n            {\n                \"code\": \"test1\",\n                \"name\": \"test1\",\n                \"link\": \"/test1\",\n                \"date_time\": \"2024-09-26T04:55:16.000+00:00\",\n                \"submenu\": [\n                    {\n                        \"code\": \"test1.1\",\n                        \"name\": \"test1.1\",\n                        \"link\": \"/test1.1\",\n                        \"date_time\": \"2024-09-26T04:56:26.000+00:00\",\n                        \"submenu\": []\n                    }\n                ]\n            }\n        ]\n    }\n]"
+				},
+				{
+					"name": "menu list",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fdG91ZmljLnNsZWltYW4iLCJpYXQiOjE3MjczMjYxMzMsImV4cCI6MTcyNzMzMzMzM30.3zvHLtD3QV_zC4PD2Y8GNJA6wxm2YRzRxc6N6ORejKQ",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "toufic.sleiman",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 05:05:10 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"code\": \"home\",\n        \"name\": \"Home\",\n        \"link\": \"/index\",\n        \"date_time\": \"2024-09-26T04:53:29.000+00:00\",\n        \"submenu\": [\n            {\n                \"code\": \"test1\",\n                \"name\": \"test1\",\n                \"link\": \"/test1\",\n                \"date_time\": \"2024-09-26T04:55:16.000+00:00\",\n                \"submenu\": []\n            }\n        ]\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "get user details",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{accesstoken}}",
+						"type": "text"
+					},
+					{
+						"key": "apikey",
+						"value": "{{apikey}}",
+						"type": "text"
+					},
+					{
+						"key": "apisecret",
+						"value": "{{apisecret}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "{{username}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "{{language}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"\",\r\n    \"last_name\": \"\",\r\n    \"username\": \"\",\r\n    \"password\": \"\",\r\n    \"user_role\": \"\",\r\n    \"email\": \"\",\r\n    \"mobile_no\": \"\",\r\n    \"hire_date\": \"\",\r\n    \"salary\": \"\",\r\n    \"first_name_ar\": \"\",\r\n    \"last_name_ar\": \"\",\r\n    \"captchaToken\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}/api/user/details",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"details"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1Mjc5MDQzLCJleHAiOjE3MjUzNjU0NDN9.PT5eWloQVXyGzdRhf9DkeBvR1w_P7Trelo-JByqWcd4ss",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"status\": \"Failed\",\n    \"message\": \"Invalid token\",\n    \"code\": 104\n}"
+				},
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1NDQ4Mjk1LCJleHAiOjE3MjU1MzQ2OTV9.vlDxAedPJR0qMXs4bEARuW6_TLmcAb_k-6rrBlq3Ybc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:47 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user_id\": 11,\n    \"first_name\": \"Obaid\",\n    \"last_name\": \"Bawazir\",\n    \"username\": \"obaid.bawazir\",\n    \"password\": null,\n    \"user_role\": \"SC_Inspection\",\n    \"email\": \"obaid.bawazir@spsa.shj.ae\",\n    \"mobile_no\": null,\n    \"hire_date\": null,\n    \"salary\": 0,\n    \"first_name_ar\": null,\n    \"last_name_ar\": null,\n    \"date_time\": \"2024-09-02T10:28:34.000+00:00\",\n    \"otp\": null,\n    \"authorizedapis\": []\n}"
+				},
+				{
+					"name": "inspection Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1NDQ4Mjk1LCJleHAiOjE3MjU1MzQ2OTV9.vlDxAedPJR0qMXs4bEARuW6_TLmcAb_k-6rrBlq3Ybc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 04:46:32 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"headers\": {},\n    \"body\": {\n        \"success\": false,\n        \"status\": \"Failed\",\n        \"message\": \"Invalid token\",\n        \"code\": 104\n    },\n    \"status\": \"OK\",\n    \"statusCode\": \"OK\",\n    \"statusCodeValue\": 200\n}"
+				},
+				{
+					"name": "inspection Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fdG91ZmljLnNsZWltYW4iLCJpYXQiOjE3MjczMjYxMzMsImV4cCI6MTcyNzMzMzMzM30.3zvHLtD3QV_zC4PD2Y8GNJA6wxm2YRzRxc6N6ORejKQ",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "toufic.sleiman",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 04:49:08 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"headers\": {},\n    \"body\": {\n        \"success\": false,\n        \"status\": \"Failed\",\n        \"message\": \"Not authorized to use the http://cert.spsa.shj.ae/auth/api/menu/list API\",\n        \"code\": 401\n    },\n    \"status\": \"OK\",\n    \"statusCode\": \"OK\",\n    \"statusCodeValue\": 200\n}"
+				},
+				{
+					"name": "inspection Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fdG91ZmljLnNsZWltYW4iLCJpYXQiOjE3MjczMjYxMzMsImV4cCI6MTcyNzMzMzMzM30.3zvHLtD3QV_zC4PD2Y8GNJA6wxm2YRzRxc6N6ORejKQ",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "toufic.sleiman",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 04:56:45 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"code\": \"home\",\n        \"name\": \"Home\",\n        \"link\": \"/index\",\n        \"date_time\": \"2024-09-26T04:53:29.000+00:00\",\n        \"submenu\": [\n            {\n                \"code\": \"test1\",\n                \"name\": \"test1\",\n                \"link\": \"/test1\",\n                \"date_time\": \"2024-09-26T04:55:16.000+00:00\",\n                \"submenu\": [\n                    {\n                        \"code\": \"test1.1\",\n                        \"name\": \"test1.1\",\n                        \"link\": \"/test1.1\",\n                        \"date_time\": \"2024-09-26T04:56:26.000+00:00\",\n                        \"submenu\": []\n                    }\n                ]\n            }\n        ]\n    }\n]"
+				},
+				{
+					"name": "menu list",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fdG91ZmljLnNsZWltYW4iLCJpYXQiOjE3MjczMjYxMzMsImV4cCI6MTcyNzMzMzMzM30.3zvHLtD3QV_zC4PD2Y8GNJA6wxm2YRzRxc6N6ORejKQ",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "toufic.sleiman",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 05:05:10 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"code\": \"home\",\n        \"name\": \"Home\",\n        \"link\": \"/index\",\n        \"date_time\": \"2024-09-26T04:53:29.000+00:00\",\n        \"submenu\": [\n            {\n                \"code\": \"test1\",\n                \"name\": \"test1\",\n                \"link\": \"/test1\",\n                \"date_time\": \"2024-09-26T04:55:16.000+00:00\",\n                \"submenu\": []\n            }\n        ]\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "forgot password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{accesstoken}}",
+						"type": "text"
+					},
+					{
+						"key": "apikey",
+						"value": "{{apikey}}",
+						"type": "text"
+					},
+					{
+						"key": "apisecret",
+						"value": "{{apisecret}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "{{username}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "{{language}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/api/token/forgot/password",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"token",
+						"forgot",
+						"password"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1Mjc5MDQzLCJleHAiOjE3MjUzNjU0NDN9.PT5eWloQVXyGzdRhf9DkeBvR1w_P7Trelo-JByqWcd4ss",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"status\": \"Failed\",\n    \"message\": \"Invalid token\",\n    \"code\": 104\n}"
+				},
+				{
+					"name": "verify token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1NDQ4Mjk1LCJleHAiOjE3MjU1MzQ2OTV9.vlDxAedPJR0qMXs4bEARuW6_TLmcAb_k-6rrBlq3Ybc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/token/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Sep 2024 11:11:47 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user_id\": 11,\n    \"first_name\": \"Obaid\",\n    \"last_name\": \"Bawazir\",\n    \"username\": \"obaid.bawazir\",\n    \"password\": null,\n    \"user_role\": \"SC_Inspection\",\n    \"email\": \"obaid.bawazir@spsa.shj.ae\",\n    \"mobile_no\": null,\n    \"hire_date\": null,\n    \"salary\": 0,\n    \"first_name_ar\": null,\n    \"last_name_ar\": null,\n    \"date_time\": \"2024-09-02T10:28:34.000+00:00\",\n    \"otp\": null,\n    \"authorizedapis\": []\n}"
+				},
+				{
+					"name": "inspection Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmFpZC5iYXdhemlyIiwiaWF0IjoxNzI1NDQ4Mjk1LCJleHAiOjE3MjU1MzQ2OTV9.vlDxAedPJR0qMXs4bEARuW6_TLmcAb_k-6rrBlq3Ybc",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "obaid.bawazir",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 04:46:32 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"headers\": {},\n    \"body\": {\n        \"success\": false,\n        \"status\": \"Failed\",\n        \"message\": \"Invalid token\",\n        \"code\": 104\n    },\n    \"status\": \"OK\",\n    \"statusCode\": \"OK\",\n    \"statusCodeValue\": 200\n}"
+				},
+				{
+					"name": "inspection Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fdG91ZmljLnNsZWltYW4iLCJpYXQiOjE3MjczMjYxMzMsImV4cCI6MTcyNzMzMzMzM30.3zvHLtD3QV_zC4PD2Y8GNJA6wxm2YRzRxc6N6ORejKQ",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "toufic.sleiman",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 04:49:08 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"headers\": {},\n    \"body\": {\n        \"success\": false,\n        \"status\": \"Failed\",\n        \"message\": \"Not authorized to use the http://cert.spsa.shj.ae/auth/api/menu/list API\",\n        \"code\": 401\n    },\n    \"status\": \"OK\",\n    \"statusCode\": \"OK\",\n    \"statusCodeValue\": 200\n}"
+				},
+				{
+					"name": "inspection Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fdG91ZmljLnNsZWltYW4iLCJpYXQiOjE3MjczMjYxMzMsImV4cCI6MTcyNzMzMzMzM30.3zvHLtD3QV_zC4PD2Y8GNJA6wxm2YRzRxc6N6ORejKQ",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "toufic.sleiman",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 04:56:45 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"code\": \"home\",\n        \"name\": \"Home\",\n        \"link\": \"/index\",\n        \"date_time\": \"2024-09-26T04:53:29.000+00:00\",\n        \"submenu\": [\n            {\n                \"code\": \"test1\",\n                \"name\": \"test1\",\n                \"link\": \"/test1\",\n                \"date_time\": \"2024-09-26T04:55:16.000+00:00\",\n                \"submenu\": [\n                    {\n                        \"code\": \"test1.1\",\n                        \"name\": \"test1.1\",\n                        \"link\": \"/test1.1\",\n                        \"date_time\": \"2024-09-26T04:56:26.000+00:00\",\n                        \"submenu\": []\n                    }\n                ]\n            }\n        ]\n    }\n]"
+				},
+				{
+					"name": "menu list",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fdG91ZmljLnNsZWltYW4iLCJpYXQiOjE3MjczMjYxMzMsImV4cCI6MTcyNzMzMzMzM30.3zvHLtD3QV_zC4PD2Y8GNJA6wxm2YRzRxc6N6ORejKQ",
+								"type": "text"
+							},
+							{
+								"key": "apikey",
+								"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+								"type": "text"
+							},
+							{
+								"key": "apisecret",
+								"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+								"type": "text"
+							},
+							{
+								"key": "username",
+								"value": "toufic.sleiman",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://cert.spsa.shj.ae/auth/api/menu/list",
+							"protocol": "https",
+							"host": [
+								"cert",
+								"spsa",
+								"shj",
+								"ae"
+							],
+							"path": [
+								"auth",
+								"api",
+								"menu",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Sep 2024 05:05:10 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"code\": \"home\",\n        \"name\": \"Home\",\n        \"link\": \"/index\",\n        \"date_time\": \"2024-09-26T04:53:29.000+00:00\",\n        \"submenu\": [\n            {\n                \"code\": \"test1\",\n                \"name\": \"test1\",\n                \"link\": \"/test1\",\n                \"date_time\": \"2024-09-26T04:55:16.000+00:00\",\n                \"submenu\": []\n            }\n        ]\n    }\n]"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "endpoint",
+			"value": "https://cert.spsa.shj.ae/auth",
+			"type": "string"
+		},
+		{
+			"key": "endpoint",
+			"value": "http://localhost:8080/auth",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "apikey",
+			"value": "hde36b429-f747-44l7-a841-e6djf4fce2dh",
+			"type": "string"
+		},
+		{
+			"key": "apisecret",
+			"value": "UAyFQThz0RdPzHCpShthfVB3zcoskeeo920mEbrwieyRiO1jqPAOhO4oM",
+			"type": "string"
+		},
+		{
+			"key": "accesstoken",
+			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQ0NFU1NfVE9LRU5fZ3JjLWFkbWluIiwiaWF0IjoxNzI3OTQ5NzA5LCJleHAiOjE3Mjc5NTY5MDl9.GIeM3Wa4P7KofCHMfCLAKQ6E83a2gSD3yG-eO2xRVVQ",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "grc-admin",
+			"type": "string"
+		},
+		{
+			"key": "language",
+			"value": "en",
+			"type": "string"
+		},
+		{
+			"key": "refreshtoken",
+			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSRUZSRVNIX1RPS0VOX3RvdWZpYy5zbGVpbWFuIiwiaWF0IjoxNzI3MjQzNjUwLCJleHAiOjE3MjczMzAwNTB9.CPNsq8vo68i6XVVv0tWDmSpzDvecsYFRzJWtUQs5k1I",
+			"type": "string"
+		},
+		{
+			"key": "refreshkey",
+			"value": "dG91ZmljLnNsZWltYW4",
+			"type": "string"
+		}
+	]
+}
