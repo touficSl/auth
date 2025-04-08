@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.service.auth.builder.request.LoginRequest;
 import com.service.auth.builder.request.RegisterRequest;
+import com.service.auth.builder.request.TeamRq;
 import com.service.auth.builder.request.UpdateUserReq;
 import com.service.auth.builder.response.MenuResponse;
 import com.service.auth.model.MenuRole;
@@ -48,7 +49,7 @@ public interface UserService {
 
 	ResponseEntity<?> adminchangepass(Locale locale, String username, String newpassword, String confirmpassword);
 
-	ResponseEntity<?> authorization(String username, Locale locale, String api);
+	ResponseEntity<?> authorization(String username, Locale locale, String api, String menuauthid);
 
 	ResponseEntity<?> details(Locale locale, String username);
 
@@ -79,4 +80,19 @@ public interface UserService {
 	ResponseEntity<?> registerusers(Locale locale, String version);
 
 	ResponseEntity<?> userbypassldap(Locale locale, String username, String selectedusername, String bypasspassword, boolean bypass3dparty);
+
+	ResponseEntity<?> rolegoalsaccesslist(Locale locale, String username, String pagename, boolean byteam);
+
+	ResponseEntity<?> teamlist(Locale locale, Boolean all, Integer page, Integer size, String search, String sortcolumn, Boolean descending, Integer draw);
+
+	ResponseEntity<?> teamsave(Locale locale, String username, @Valid TeamRq req);
+
+	ResponseEntity<?> teamremove(Locale locale, String username, String code);
+
+	ResponseEntity<?> teamrolelist(Locale locale, String code);
+
+	ResponseEntity<?> teamroleuserslist(Locale locale, String serverkey, String serverpass, String team, String role);
+
+	ResponseEntity<?> childrolesuserslist(Locale locale, String serverkey, String serverpass, String parentrole);
+
 }

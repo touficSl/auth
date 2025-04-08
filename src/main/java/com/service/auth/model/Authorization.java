@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@IdClass(Authorization.class)
+@IdClass(AuthorizationId.class)
 @Table(name = "authorization", uniqueConstraints = { @UniqueConstraint(columnNames = {"userRole", "api"}) })
 public class Authorization {
 
@@ -21,18 +21,24 @@ public class Authorization {
 	private String userRole;
 
 	@NotBlank
-	@Size(max = 700)
+	@Size(max = 255)
+	@Id
+	private String menuauthid;
+
+	@NotBlank
+	@Size(max = 450)
 	@Id
 	private String api;
 
 	private boolean enable;
 	
-	public Authorization(@NotBlank @Size(max = 20) String userRole, @NotBlank @Size(max = 700) String api,
-			boolean enable) {
+	public Authorization(@NotBlank @Size(max = 20) String userRole, @NotBlank @Size(max = 450) String api,
+			boolean enable, @NotBlank @Size(max = 450) String menuauthid) {
 		super();
 		this.userRole = userRole;
 		this.api = api;
 		this.enable = enable;
+		this.menuauthid = menuauthid;
 	}
 
 	public Authorization() {
@@ -60,5 +66,13 @@ public class Authorization {
 
 	public void setEnable(boolean enable) {
 		this.enable = enable;
+	}
+
+	public String getMenuauthid() {
+		return menuauthid;
+	}
+
+	public void setMenuauthid(String menuauthid) {
+		this.menuauthid = menuauthid;
 	}
 }

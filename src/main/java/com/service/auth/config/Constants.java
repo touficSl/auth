@@ -35,4 +35,5 @@ public class Constants {
 	public static final String DELETE = "delete";
 	public static final String CONFIGURATION = "configuration";
 	public static final String GLOBAL = "global";
+	public static final String NO_TEAM = "No Team";
 }

@@ -10,10 +10,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<packaging>war</packaging>
-	<groupId>com.service</groupId>
+	<groupId>com.service.charity</groupId>
 	<artifactId>auth</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Auth service</name>
+	<name>Chartiy Auth service</name>
 	<description>Auth service</description>
 
 	<properties>

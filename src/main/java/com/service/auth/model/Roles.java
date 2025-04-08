@@ -27,7 +27,12 @@ public class Roles {
 
 	@Column(name = "require_2fa")
 	private Boolean require2fa;
-	
+
+	private String parentrole;
+
+	@Size(max = 200)
+	private String team;
+
     @Transient
     private boolean requiredpassword;
 
@@ -35,12 +40,14 @@ public class Roles {
 	}
 
 	public Roles(@NotBlank @Size(max = 20) String user_role, String auth_type,
-			String position, String level, String parentrole, String name) {
+			String parentrole, String name, String team) {
 		super();
 		this.userRole = user_role;
 		this.auth_type = auth_type;
 		this.require2fa = true;
+		this.parentrole = parentrole;
 		this.name = name;
+		this.team = team;
 	}
 
 	public String getUser_role() {
@@ -80,11 +87,27 @@ public class Roles {
 		this.requiredpassword = requiredpassword;
 	}
 
+	public String getParentrole() {
+		return parentrole;
+	}
+
+	public void setParentrole(String parentrole) {
+		this.parentrole = parentrole;
+	}
+
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getTeam() {
+		return team;
+	}
+
+	public void setTeam(String team) {
+		this.team = team;
 	}
 }

@@ -16,6 +16,7 @@ import com.service.auth.builder.request.UpdateUserReq;
 import com.service.auth.config.Constants;
 import com.service.auth.service.TokensService;
 import com.service.auth.service.UserService;
+
 import jakarta.validation.Valid;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -40,9 +41,10 @@ public class UserController {
 	@RequestMapping(value = "/authorization", method = RequestMethod.POST)
 	public ResponseEntity<?> authorization(@RequestHeader(name = "username", required = true) String username,
 										   @RequestHeader(name = "Accept-Language", required = false) Locale locale,
-		    							   @RequestHeader(name = "api", required = false) String api) {
+		    							   @RequestHeader(name = "api", required = false) String api,
+		    							   @RequestHeader(name = "menuauthid", required = false) String menuauthid) {
 
-		return userService.authorization(username, locale, api);
+		return userService.authorization(username, locale, api, menuauthid);
 	}
 
 	@RequestMapping(value = "/change/password", method = RequestMethod.POST)

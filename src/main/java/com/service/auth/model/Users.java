@@ -86,9 +86,20 @@ public class Users {
 	private String lattitude;
 
     @Transient 
-    private List<String> authorizedapis;
+    private List<Authorization> authorizedapis;
+
+    @Transient 
+	private String parentrole;
+
+    @Transient 
+	private String team;
     
 	public Users() {
+	}
+	
+	public void linkrole(Roles role) {
+		this.parentrole = role.getParentrole();
+		this.team = role.getTeam();
 	}
 
 	public Users(@NotBlank @Size(max = 30) String first_name, @NotBlank @Size(max = 30) String last_name,
@@ -281,11 +292,11 @@ public class Users {
 		this.otp = otp;
 	}
 
-	public List<String> getAuthorizedapis() {
+	public List<Authorization> getAuthorizedapis() {
 		return authorizedapis;
 	}
 
-	public void setAuthorizedapis(List<String> authorizedapis) {
+	public void setAuthorizedapis(List<Authorization> authorizedapis) {
 		this.authorizedapis = authorizedapis;
 	}
 
@@ -345,6 +356,14 @@ public class Users {
 		this.bypass3rdpartyauth = bypass3rdpartyauth;
 	}
 
+	public String getParentrole() {
+		return parentrole;
+	}
+
+	public void setParentrole(String parentrole) {
+		this.parentrole = parentrole;
+	}
+
 	public String getUserrole() {
 		return userrole;
 	}
@@ -367,5 +386,13 @@ public class Users {
 
 	public void setLattitude(String lattitude) {
 		this.lattitude = lattitude;
+	}
+
+	public String getTeam() {
+		return team;
+	}
+
+	public void setTeam(String team) {
+		this.team = team;
 	}
 }

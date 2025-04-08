@@ -18,11 +18,10 @@ public class MenuRoleRequest {
     
 
     @JsonDeserialize(using = SanitizedStringDeserializer.class)
-	private String level;
-    @JsonDeserialize(using = SanitizedStringDeserializer.class)
-	private String position;
-    @JsonDeserialize(using = SanitizedStringDeserializer.class)
 	private String parentrole;
+
+    @JsonDeserialize(using = SanitizedStringDeserializer.class)
+	private String team;
 
 	private List<AllowedMenu> allowedmenulist;
 	
@@ -50,18 +49,6 @@ public class MenuRoleRequest {
 	public void setAllowedmenulist(List<AllowedMenu> allowedmenulist) {
 		this.allowedmenulist = allowedmenulist;
 	}
-	public String getLevel() {
-		return level;
-	}
-	public void setLevel(String level) {
-		this.level = level;
-	}
-	public String getPosition() {
-		return position;
-	}
-	public void setPosition(String position) {
-		this.position = position;
-	}
 	public String getParentrole() {
 		return parentrole;
 	}
@@ -73,5 +60,11 @@ public class MenuRoleRequest {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getTeam() {
+		return team;
+	}
+	public void setTeam(String team) {
+		this.team = team;
 	}
 }

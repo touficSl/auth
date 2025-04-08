@@ -7,6 +7,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.service.auth.model.MenuAuthorization;
 import com.service.auth.model.Roles;
+import com.service.auth.model.Teams;
 import com.service.auth.model.Tokens;
 import com.service.auth.model.Users;
 
@@ -57,13 +58,19 @@ public class JPASpecification {
     }
 
     public static Specification<MenuAuthorization> returnMenuAuthorizationSpecification(String menuauthid, 
-            boolean get, boolean post, boolean update, boolean delete, boolean configuration) {
+            boolean get, boolean post, boolean update, boolean delete, boolean configuration, String accessibleaction) {
 
         return (root, query, criteriaBuilder) -> {
             // Create a list of predicates (conditions)
             List<Predicate> andPredicates = new ArrayList<>(); // For AND conditions
             List<Predicate> orPredicates = new ArrayList<>();  // For OR conditions
 
+            if (accessibleaction != null)
+                andPredicates.add(criteriaBuilder.equal(root.get("accessibleaction"), accessibleaction));
+            else 
+                andPredicates.add(criteriaBuilder.isNull(root.get("accessibleaction")));
+
+            
             // Check if menuauthid is provided and add it as an AND condition
             if (menuauthid != null && !menuauthid.isEmpty()) {
                 andPredicates.add(criteriaBuilder.equal(root.get("menuauthId"), menuauthid));
@@ -150,6 +157,24 @@ public class JPASpecification {
 
 			// Return the final combined predicate (username filter + search filter, if applicable)
 			return basePredicate;
+        };
+	}
+	public static Specification<Teams> returnTeamSpecification(String search, String sortColumn, Boolean descending) {
+		return (root, query, criteriaBuilder) -> {
+
+            if (descending) 
+                query.orderBy(criteriaBuilder.desc(root.get(sortColumn)));
+            else 
+                query.orderBy(criteriaBuilder.asc(root.get(sortColumn)));
+            
+            if (search == null || search.isEmpty()) {
+                return criteriaBuilder.conjunction(); // No filtering
+            }
+            String searchPattern = search + "%";
+            return criteriaBuilder.or(
+                criteriaBuilder.like(root.get("name"), searchPattern),
+                criteriaBuilder.like(root.get("description"), searchPattern)
+            );
         };
 	}
 }

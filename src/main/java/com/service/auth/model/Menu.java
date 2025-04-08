@@ -1,6 +1,9 @@
 package com.service.auth.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+
+import com.service.auth.config.Utils;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -53,6 +56,8 @@ public class Menu {
 	private boolean show;
 	private boolean showdropdownlist;
 	private boolean opendropdownlist;
+
+	private String accessibleactions;
 
 	public Menu() {
 	}
@@ -207,5 +212,17 @@ public class Menu {
 
 	public void setOpendropdownlist(boolean opendropdownlist) {
 		this.opendropdownlist = opendropdownlist;
+	}
+	
+	public ArrayList<String> getActionslist() {
+		return Utils.convertStringToArrayList(accessibleactions);
+	}
+
+	public String getAccessibleactions() {
+		return accessibleactions;
+	}
+
+	public void setAccessibleactions(String accessibleactions) {
+		this.accessibleactions = accessibleactions;
 	}
 }

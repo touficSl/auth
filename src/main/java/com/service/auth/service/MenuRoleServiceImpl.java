@@ -15,6 +15,7 @@ import com.service.auth.builder.request.MenuRoleRequest;
 import com.service.auth.builder.response.MenuResponse;
 import com.service.auth.builder.response.MessageResponse;
 import com.service.auth.config.Constants;
+import com.service.auth.config.Utils;
 import com.service.auth.model.Authorization;
 import com.service.auth.model.Menu;
 import com.service.auth.model.MenuAuthorization;
@@ -92,14 +93,17 @@ public class MenuRoleServiceImpl implements MenuRoleService {
 			role.setUserRole(userrole);
 			role.setAuth_type(req.getAuth_type());
 			role.setRequire2fa(require2fa);
+			if (req.getParentrole() != null && !req.getParentrole().isEmpty() && !req.getParentrole().trim().equalsIgnoreCase("empty"))
+				role.setParentrole(req.getParentrole());
 			role.setName(req.getName());
+			role.setTeam(req.getTeam());
 			role = roleRepository.save(role);
 			
-			Specification<MenuAuthorization> specifciation = JPASpecification.returnMenuAuthorizationSpecification(Constants.GLOBAL, false, false, false, false, false);
+			Specification<MenuAuthorization> specifciation = JPASpecification.returnMenuAuthorizationSpecification(Constants.GLOBAL, false, false, false, false, false, null);
 			List<MenuAuthorization> menuauthlist = menuAuthorizationRepository.findAll(specifciation);
 			
 			for (MenuAuthorization menuath : menuauthlist) {
-				Authorization authorization = new Authorization(userrole, menuath.getApi(), true);
+				Authorization authorization = new Authorization(userrole, menuath.getApi(), true, menuath.getMenuauthId());
 				authorizationRepository.save(authorization);
 			}
 			
@@ -122,6 +126,7 @@ public class MenuRoleServiceImpl implements MenuRoleService {
 			return;
 		}
 		
+		ArrayList<String> accessibleactionlist = new ArrayList<String>();
 		boolean get = false, post = false, update = false, delete = false, configuration = false;
 		for (AllowedMenu children : allowedmenu.getChildren()) {
 			if (children.getMenuCode().equals(Constants.GET)) get = true;
@@ -129,21 +134,42 @@ public class MenuRoleServiceImpl implements MenuRoleService {
 			else if (children.getMenuCode().equals(Constants.UPDATE)) update = true;
 			else if (children.getMenuCode().equals(Constants.DELETE)) delete = true;
 			else if (children.getMenuCode().equals(Constants.CONFIGURATION)) configuration = true;
+			else {
+				List<Menu> menulist = menuRepository.findByAuthId(allowedmenu.getMenuCode());
+				if (menulist != null && menulist.size() > 0) {
+					Menu menu = menulist.get(0); // we need one of the 2 rows 
+					ArrayList<String> accessibleactions = Utils.convertStringToArrayList(menu.getAccessibleactions());
+					if (accessibleactions.size() > 0 && accessibleactions.contains(children.getMenuCode()))
+						accessibleactionlist.add(children.getMenuCode());
+				}
+			}
 		}
+		String accessibleactions = Utils.convertArrayListToString(accessibleactionlist);
 		
 		List<Menu> menulist = menuRepository.findByAuthId(allowedmenu.getMenuCode());
 		for (Menu menu : menulist) {
 
-			MenuRole menurole = new MenuRole(menu, userrole, get, post, update, delete, configuration);
+			MenuRole menurole = new MenuRole(menu, userrole, get, post, update, delete, configuration, accessibleactions);
 			menuRoleRepository.save(menurole);
 		}
 
-		Specification<MenuAuthorization> specifciation = JPASpecification.returnMenuAuthorizationSpecification(allowedmenu.getMenuCode(), get, post, update, delete, configuration);
+		Specification<MenuAuthorization> specifciation = JPASpecification.returnMenuAuthorizationSpecification(allowedmenu.getMenuCode(), get, post, update, delete, configuration, null);
 		List<MenuAuthorization> menuauthlist = menuAuthorizationRepository.findAll(specifciation);
 		
 		for (MenuAuthorization menuath : menuauthlist) {
-			Authorization authorization = new Authorization(userrole, menuath.getApi(), true);
+			Authorization authorization = new Authorization(userrole, menuath.getApi(), true, menuath.getMenuauthId());
 			authorizationRepository.save(authorization);
+		}
+		
+		for (String accessibleaction : accessibleactionlist) { // action specification
+
+			Specification<MenuAuthorization> actionspecifciation = JPASpecification.returnMenuAuthorizationSpecification(allowedmenu.getMenuCode(), false, false, false, false, false, accessibleaction);
+			List<MenuAuthorization> actionmenuauthlist = menuAuthorizationRepository.findAll(actionspecifciation);
+			
+			for (MenuAuthorization menuath : actionmenuauthlist) {
+				Authorization authorization = new Authorization(userrole, menuath.getApi(), true, menuath.getMenuauthId());
+				authorizationRepository.save(authorization);
+			}
 		}
 
 		for (AllowedMenu children : allowedmenu.getChildren()) 

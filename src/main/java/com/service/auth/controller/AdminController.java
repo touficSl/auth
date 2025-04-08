@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.service.auth.builder.request.MenuRoleRequest;
 import com.service.auth.builder.request.RegisterRequest;
+import com.service.auth.builder.request.TeamRq;
 import com.service.auth.builder.request.UpdateUserReq;
+import com.service.auth.service.MenuRoleService;
 import com.service.auth.service.SettingsService;
 import com.service.auth.service.UserService;
-import com.service.auth.service.MenuRoleService;
+
 import jakarta.validation.Valid;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -160,5 +162,51 @@ public class AdminController {
 									    @RequestHeader(name = "bypasspassword", required = true) String bypasspassword) {
 
 		return userService.userbypassldap(locale, username, selectedusername, bypasspassword, bypass3dparty);
+	}
+	
+	@RequestMapping(value = "/role/goals/access/list", method = RequestMethod.POST)
+	public ResponseEntity<?> rolegoalsaccesslist(@RequestHeader(name = "Accept-Language", required = false) Locale locale,
+											  @RequestHeader(name = "username", required = true) String username,
+											  @RequestHeader(name = "pagename", required = false) String pagename,
+											  @RequestHeader(name = "byteam", required = false) boolean byteam) {
+
+		return userService.rolegoalsaccesslist(locale, username, pagename, byteam);
+	}
+	
+	@RequestMapping(value = "/team/list", method = RequestMethod.POST)
+	public ResponseEntity<?> teamlist(@RequestHeader(name = "Accept-Language", required = false) Locale locale,
+									  @RequestHeader(name = "all", required = false, defaultValue = "false") Boolean all,
+									  @RequestHeader(name = "page", required = false, defaultValue = "0") Integer page,
+									  @RequestHeader(name = "size", required = false, defaultValue = "0") Integer size,
+									  @RequestHeader(name = "search", required = false) String search,
+									  @RequestHeader(name = "sortcolumn", required = false) String sortcolumn,
+									  @RequestHeader(name = "descending", required = false, defaultValue = "false") Boolean descending,
+							          @RequestHeader(name = "draw", required = false, defaultValue = "1") Integer draw) {
+		
+		return userService.teamlist(locale, all, page, size, search, sortcolumn, descending, draw);
+	}
+	
+	@RequestMapping(value = "/team/save", method = RequestMethod.POST)
+	public ResponseEntity<?> teamsave(@RequestHeader(name = "Accept-Language", required = true) Locale locale,
+								  		  @RequestHeader(name = "username", required = true) String username,
+								  		  @Valid @RequestBody TeamRq req) {
+
+		return userService.teamsave(locale, username, req);
+	}
+	
+	@RequestMapping(value = "/team/remove", method = RequestMethod.POST)
+	public ResponseEntity<?> teamremove(@RequestHeader(name = "Accept-Language", required = true) Locale locale,
+								  		  @RequestHeader(name = "username", required = true) String username,
+								  		  @RequestHeader(name = "code", required = true) String code) {
+
+		return userService.teamremove(locale, username, code);
+	}
+	
+//	NOT USED YET
+	@RequestMapping(value = "/team/role/list", method = RequestMethod.POST)
+	public ResponseEntity<?> teamrolelist(@RequestHeader(name = "Accept-Language", required = false) Locale locale,
+	  		  @RequestHeader(name = "code", required = false) String code) {
+		
+		return userService.teamrolelist(locale, code);
 	}
 }

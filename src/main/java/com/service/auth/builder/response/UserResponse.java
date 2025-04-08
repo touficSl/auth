@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.service.auth.config.Constants;
 import com.service.auth.config.Utils;
+import com.service.auth.model.Authorization;
 import com.service.auth.model.Roles;
 import com.service.auth.model.Users;
 
@@ -23,13 +24,11 @@ public class UserResponse {
 	private boolean enable;
 	private boolean locked;
 	private int invalidattempts;
-    private List<String> authorizedapis;
+    private List<Authorization> authorizedapis;
     private boolean canforgetpass;
 	private String authtype;
 	private boolean bypass3rdpartyauth;
 
-	private String position;
-	private String level;
 	private String parentrole;
 	
     public UserResponse() {
@@ -54,6 +53,8 @@ public class UserResponse {
 		this.mobile_no = users.getMobile_no();
 		this.setAuthtype(role.getAuth_type());
 		this.setBypass3rdpartyauth(users.isBypass3rdpartyauth());
+
+		this.parentrole = role.getParentrole();
     }
     
 	public String getFirst_name() {
@@ -140,10 +141,10 @@ public class UserResponse {
 	public void setInvalidattempts(int invalidattempts) {
 		this.invalidattempts = invalidattempts;
 	}
-	public List<String> getAuthorizedapis() {
+	public List<Authorization> getAuthorizedapis() {
 		return authorizedapis;
 	}
-	public void setAuthorizedapis(List<String> authorizedapis) {
+	public void setAuthorizedapis(List<Authorization> authorizedapis) {
 		this.authorizedapis = authorizedapis;
 	}
 
@@ -169,22 +170,6 @@ public class UserResponse {
 
 	public void setBypass3rdpartyauth(boolean bypass3rdpartyauth) {
 		this.bypass3rdpartyauth = bypass3rdpartyauth;
-	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
-	}
-
-	public String getLevel() {
-		return level;
-	}
-
-	public void setLevel(String level) {
-		this.level = level;
 	}
 
 	public String getParentrole() {

@@ -426,5 +426,8 @@ VALUES (b'0', 'User', '@.shj.ae', '', '', 'hde36b429-f747-44l7-a841-e6djf4fce2dh
 -- SET api = REPLACE(api, '/auth/api/', '/api/');
 
 
+ALTER TABLE `menu` 
+CHANGE COLUMN `opendropdownlist` `opendropdownlist` BIT(1) NOT NULL DEFAULT 0 ,
+CHANGE COLUMN `showdropdownlist` `showdropdownlist` BIT(1) NOT NULL DEFAULT 0 ;
 
 

@@ -22,6 +22,7 @@ import com.service.auth.builder.request.EmailDetailsRq;
 import com.service.auth.builder.request.LoginRequest;
 import com.service.auth.builder.request.RegisterRequest;
 import com.service.auth.builder.request.SMSDetailsRq;
+import com.service.auth.builder.request.TeamRq;
 import com.service.auth.builder.request.UpdateUserReq;
 import com.service.auth.builder.response.CountResponse;
 import com.service.auth.builder.response.DatatableResponse;
@@ -29,6 +30,9 @@ import com.service.auth.builder.response.JwtResponse;
 import com.service.auth.builder.response.LdapResponse;
 import com.service.auth.builder.response.MenuResponse;
 import com.service.auth.builder.response.MessageResponse;
+import com.service.auth.builder.response.RolesUsersResponse;
+import com.service.auth.builder.response.TeamsRolesResponse;
+import com.service.auth.builder.response.TeamsRolesUsersResponse;
 import com.service.auth.builder.response.TokenResponse;
 import com.service.auth.builder.response.UserResponse;
 import com.service.auth.builder.response.VerifyUsernameResponse;
@@ -41,11 +45,13 @@ import com.service.auth.model.Authorization;
 import com.service.auth.model.MenuRole;
 import com.service.auth.model.Roles;
 import com.service.auth.model.Settings;
+import com.service.auth.model.Teams;
 import com.service.auth.model.Tokens;
 import com.service.auth.model.Users;
 import com.service.auth.repository.AuthorizationRepository;
 import com.service.auth.repository.MenuRoleRepository;
 import com.service.auth.repository.RoleRepository;
+import com.service.auth.repository.TeamsRepository;
 import com.service.auth.repository.UsersRepository;
 import com.service.auth.rest.call.UAEPassUserInfo;
 
@@ -96,6 +102,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	RoleRepository roleRepository;
+	
+	@Autowired
+	TeamsRepository teamsRepository;
 
 	@Override
 	public ResponseEntity<?> authenticate(Locale locale, LoginRequest loginRequest, boolean verifyotptoken, String device, String ip, HttpServletResponse response) {
@@ -244,11 +253,13 @@ public class UserServiceImpl implements UserService {
 				if (user.isLocked())
 					return ResponseEntity.ok(new MessageResponse(messageService.getMessage("account_locked", locale), 116));
 				
-				List<String> authorizedapis = returnAuthorizedapis(user.getUser_role());
+				List<Authorization> authorizedapis = authorizationRepository.findByEnabledUserRole(user.getUser_role());
 	
-				if (!Utils.isapiauthorized(url, authorizedapis)) 
+				if (url != null && !Utils.isapiauthorized(url, null, authorizedapis)) 
 					return ResponseEntity.ok(new MessageResponse(messageService.getMessage("not_authorized", locale).replace("#API#", url), 401));
 	
+				Roles role = roleRepository.findByUserRole(user.getUser_role());
+				user.linkrole(role);
 				user.setAuthorizedapis(authorizedapis);
 				return ResponseEntity.ok(user);
 			}
@@ -264,31 +275,7 @@ public class UserServiceImpl implements UserService {
 	public Optional<Users> findByUsername(String username) {
 		return usersRepository.findByUsername(username);
 	}
-
-	private List<String> returnAuthorizedapis(String user_role) {
-
-		List<Authorization> authorizations = authorizationRepository.findByUserRole(user_role);
-
-		List<String> authorizedapis = new ArrayList<String>();
-		for (Authorization auth : authorizations)
-			if (auth.isEnable())
-				authorizedapis.add(auth.getApi());
-
-		return authorizedapis;
-	}
-
-	private List<String> returnAuthorizedapis(String user_role, String api) {
-
-		List<Authorization> authorizations = authorizationRepository.findByUserRoleAndLikeApi(user_role, api);
-
-		List<String> authorizedapis = new ArrayList<String>();
-		for (Authorization auth : authorizations)
-			if (auth.isEnable())
-				authorizedapis.add(auth.getApi());
-
-		return authorizedapis;
-	}
-
+ 
 	@Override
 	public ResponseEntity<?> sendOTP(Locale locale, String token, String username, String type) {
 
@@ -537,7 +524,7 @@ public class UserServiceImpl implements UserService {
 
         String encodedusername = Base64.getEncoder().encodeToString(username.getBytes());
    	    Settings settings = settingsService.returndefaultSettings();
-		return settings.getUaepassendpoint() + settings.getUaepassauthurl().replace("#CLIENTID#", settings.getUaepassusername()).replace("#STATE#", settings.getUaepassstate()).replace("#REDIRECTURL#", settings.getUaepassredirecturl().replace("#USERNAME#", "?eu=" + encodedusername));
+		return settings.getUaepassendpoint() + settings.getUaepassauthurl().replace("#CLIENTID#", settings.getUaepassusername()).replace("#STATE#", settings.getUaepassstate()).replace("#REDIRECTURL#", settings.getUaepassspsaredirecturl().replace("#USERNAME#", "?eu=" + encodedusername));
 	}
 
 	@Override
@@ -771,7 +758,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public ResponseEntity<?> authorization(String username, Locale locale, String api) {
+	public ResponseEntity<?> authorization(String username, Locale locale, String api, String menuauthid) {
 
 		try {
 			Optional<Users> userEntity = findByUsername(username);
@@ -781,7 +768,21 @@ public class UserServiceImpl implements UserService {
 			
 			Users user = userEntity.get();
 			
-			return ResponseEntity.ok(api == null ? returnAuthorizedapis(user.getUser_role()) : returnAuthorizedapis(user.getUser_role(), api));
+			List<Authorization> returnAuthorizedapis = new ArrayList<Authorization>();
+			if (api != null) {
+				if (menuauthid != null) 
+					returnAuthorizedapis = authorizationRepository.findByEnabledUserRoleAndLikeApiAndMenuauthid(user.getUser_role(), api, menuauthid);
+				else
+					returnAuthorizedapis = authorizationRepository.findByEnabledUserRoleAndLikeApi(user.getUser_role(), api);
+			}
+			else {
+				if (menuauthid != null) 
+					returnAuthorizedapis = authorizationRepository.findByEnabledUserRoleAndMenuauthid(user.getUser_role(), menuauthid);
+				else
+					returnAuthorizedapis = authorizationRepository.findByEnabledUserRole(user.getUser_role());
+			}
+			
+			return ResponseEntity.ok(returnAuthorizedapis);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1054,7 +1055,7 @@ public class UserServiceImpl implements UserService {
 				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("not_authorized_msg", locale), 121));
 	   	    
 			// Retrieve Emirates Id
-			String uaepassaccessurl = settings.getUaepassendpoint() + settings.getUaepasscallbackurl().replace("#CALLBACKURL#", settings.getUaepassredirecturl().replace("#USERNAME#", "?eu=" + encodedusername)).replace("#CODE#", code);
+			String uaepassaccessurl = settings.getUaepassendpoint() + settings.getUaepasscallbackurl().replace("#CALLBACKURL#", settings.getUaepassspsaredirecturl().replace("#USERNAME#", "?eu=" + encodedusername)).replace("#CODE#", code);
 			UAEPassUserInfo uaePassUserInfo = new UAEPassUserInfo(settings.getUaepassendpoint() + settings.getUaepassuserinfourl(), uaepassaccessurl, settings.getUaepassusername(), settings.getUaepasspassword());
 			String uaePassUserInfoRes = uaePassUserInfo.callAsGet();
 			if (uaePassUserInfoRes == null)
@@ -1312,6 +1313,213 @@ public class UserServiceImpl implements UserService {
 
 			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("changepass_success", locale)));
 			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale), 111));
+		}
+	}
+
+	@Override
+	public ResponseEntity<?> rolegoalsaccesslist(Locale locale, String username, String pagename, boolean byteam) {
+
+		try {
+			Optional<Users> userEntity = findByUsername(username);
+
+			if (!userEntity.isPresent())
+				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("user_not_exist", locale), 103));
+			
+			Users user = userEntity.get();
+			Roles role = roleRepository.findByUserRole(user.getUser_role());
+			if (role == null) 
+				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("not_authorized_msg", locale), 144));
+
+			
+			if (byteam) {
+				List<TeamsRolesUsersResponse> teamsrolesusersresp = new ArrayList<TeamsRolesUsersResponse>();
+				List<String> teams = roleRepository.finddistinctteams(user.getUser_role());
+				
+				for (String team : teams) {
+					Teams t = new Teams(Constants.NO_TEAM, Constants.NO_TEAM, Constants.NO_TEAM);
+					if (team != null) {
+						Optional<Teams> topt = teamsRepository.findById(team);
+						if (topt.isPresent()) 
+							t = topt.get();
+					}
+						
+					List<Roles> roles = roleRepository.findByParentroleAndTeam(user.getUser_role(), team);
+					List<RolesUsersResponse> rolesUsersResponses = new ArrayList<RolesUsersResponse>();
+					if (roles != null && roles.size() > 0)
+						for (Roles r : roles) {
+							List<Users> userslist = usersRepository.findByUserrole(r.getUserRole());
+							RolesUsersResponse rur = new RolesUsersResponse(r, userslist);
+							rolesUsersResponses.add(rur);
+						}
+					TeamsRolesUsersResponse teamsRolesUsersResponse =  new TeamsRolesUsersResponse(t, rolesUsersResponses);
+					teamsrolesusersresp.add(teamsRolesUsersResponse);
+				}
+				return ResponseEntity.ok(teamsrolesusersresp);
+			}
+			
+
+			List<Roles> roles = roleRepository.findByParentrole(user.getUser_role());
+				
+			List<RolesUsersResponse> rolesusersresponses = new ArrayList<RolesUsersResponse>();
+			if (roles != null && roles.size() > 0)
+				for (Roles r : roles) {
+					List<Users> userslist = usersRepository.findByUserrole(r.getUserRole());
+					RolesUsersResponse rur = new RolesUsersResponse(r, userslist);
+					rolesusersresponses.add(rur);
+				}
+			return ResponseEntity.ok(rolesusersresponses);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale), 111));
+		}
+	}
+
+	@Override
+	public ResponseEntity<?> teamlist(Locale locale, Boolean all, Integer page, Integer size, String search,
+			String sortcolumn, Boolean descending, Integer draw) {
+		try {
+			if (all) 
+				return ResponseEntity.ok(teamsRepository.findAll());
+
+			Page<Teams> userspage = null;
+			long totalrows = teamsRepository.count();
+			long recordsFiltered = totalrows;
+
+			Specification<Teams> spec = JPASpecification.returnTeamSpecification(search, sortcolumn, descending);
+		    Pageable pageable = PageRequest.of(page, size);
+		    userspage = teamsRepository.findAll(spec, pageable);
+		    
+			if (search != null && !search.trim().equals("")) {
+				List<Teams> allusersbysearch = teamsRepository.findAll(spec);
+				recordsFiltered = allusersbysearch.size();
+			} 
+	
+	        List<Teams> list = new ArrayList<Teams>(userspage.getContent());
+	        
+	        DatatableResponse<Teams> datatableresponse = new DatatableResponse<Teams>(draw, totalrows, recordsFiltered, list);
+		       
+			return ResponseEntity.ok(datatableresponse);
+	
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale), 111));
+		}
+	}
+
+	@Override
+	public ResponseEntity<?> teamsave(Locale locale, String username, @Valid TeamRq req) {
+		try {
+			
+			Teams team = new Teams(req);
+			team = teamsRepository.save(team);
+			return ResponseEntity.ok(team);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale), 111));
+		}
+	}
+
+	@Override
+	public ResponseEntity<?> teamremove(Locale locale, String username, String code) {
+		try {
+			
+			List<Roles> roles = rolesRepository.findByTeam(code);
+			if (roles != null && roles.size() > 0)
+				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("role_team_already_exist", locale), 121));
+			
+			teamsRepository.deleteById(code);
+			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("operation_success", locale)));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale), 111));
+		}
+	}
+
+	@Override
+	public ResponseEntity<?> teamrolelist(Locale locale, String code) {
+		try {
+	        List<TeamsRolesResponse> trlist = new ArrayList<TeamsRolesResponse>();
+
+			if (code != null) {
+				Optional<Teams> teamopt = teamsRepository.findById(code);
+				if (teamopt.isPresent()) {
+					Teams t = teamopt.get();
+
+	        		List<Roles> roles = rolesRepository.findByTeam(code);
+		        	TeamsRolesResponse trrs = new TeamsRolesResponse(t, roles);
+		        	trlist.add(trrs);
+				}
+				return ResponseEntity.ok(trlist);
+			}
+			 
+	        List<Teams> list = teamsRepository.findAll();
+	        
+	        if (list != null && list.size() > 0) {
+	        	for (Teams teams : list) {
+
+	        		List<Roles> roles = rolesRepository.findByTeam(teams.getCode());
+		        	TeamsRolesResponse trrs = new TeamsRolesResponse(teams, roles);
+		        	trlist.add(trrs);
+	        	}
+	        }
+		       
+			return ResponseEntity.ok(trlist);
+	
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale), 111));
+		}
+	}
+
+	@Override
+	public ResponseEntity<?> teamroleuserslist(Locale locale, String serverkey, String serverpass, String team, String role) {
+
+		try {
+			if (!settingsService.returnServerkey().equals(serverkey) ||
+					!settingsService.returnServerpass().equals(serverpass))
+				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale), 111));
+				
+			if (team != null) {
+				Optional<Teams> teamopt = teamsRepository.findById(team);
+				if (teamopt.isPresent()) {
+	        		List<Roles> roles = rolesRepository.findByTeam(team);
+	        		for (Roles r : roles) {
+	        			List<Users> ulist = usersRepository.findByUserrole(r.getUserRole());
+	        			return ResponseEntity.ok(ulist);
+	        		}
+				}
+			}
+
+			else if (role != null) {
+				Roles r = rolesRepository.findByUserRole(role);
+				if (r != null) {
+	    			List<Users> ulist = usersRepository.findByUserrole(role);
+	    			return ResponseEntity.ok(ulist);
+				}
+			}
+
+			return ResponseEntity.ok(new ArrayList<>());
+	
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale), 111));
+		}
+	}
+
+	@Override
+	public ResponseEntity<?> childrolesuserslist(Locale locale, String serverkey, String serverpass,
+			String parentrole) {
+		try {
+			List<Roles> childroles = rolesRepository.findByParentrole(parentrole);
+			for (Roles r : childroles) {
+				List<Users> ulist = usersRepository.findByUserrole(r.getUserRole());
+				return ResponseEntity.ok(ulist);
+			}
+			return ResponseEntity.ok(new ArrayList<>());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale), 111));

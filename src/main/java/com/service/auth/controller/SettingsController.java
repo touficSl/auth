@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.service.auth.builder.request.UpdateSettingsRq;
 import com.service.auth.model.Settings;
 import com.service.auth.service.SettingsService;
+
 import jakarta.validation.Valid;
 
 @CrossOrigin(origins = "*", maxAge = 3600)

@@ -109,11 +109,16 @@ public class SettingsServiceImpl implements SettingsService {
 	@Value("${spring.uaepass.state}") 
 	private String uaepassstate;
 	@Value("${spring.uaepass.redirect.url}") 
-	private String uaepassredirecturl;
+	private String uaepassspsaredirecturl;
 	@Value("${spring.uaepass.auth.url}") 
 	private String uaepassauthurl;
 	@Value("${spring.uaepass.use.eid}") 
 	private boolean uaepassuseeid;
+
+	@Value("${spring.serverkey}") 
+	private String serverkey;
+	@Value("${spring.serverpass}") 
+	private String serverpass;
 	
 	@Autowired
 	private SettingsRepository settingsRepository;
@@ -130,7 +135,7 @@ public class SettingsServiceImpl implements SettingsService {
 					ldapbasedn, apikey, apisecret, adminkey,
 					jwtsecret, jwtexpirationms, jwtexpirationmsshort, jwtexpirationmscode, uaepassregisterrole,
 					uaepassdefaultrole, uaepassusername, uaepasspassword, uaepassendpoint,
-					uaepasscallbackurl, uaepassuserinfourl, uaepassstate, uaepassredirecturl,
+					uaepasscallbackurl, uaepassuserinfourl, uaepassstate, uaepassspsaredirecturl,
 					uaepassauthurl, uaepassuseeid, passregisterrole, passdefaultrole,
 					maximuminvalidattempts, recaptchavalidation, recaptchasitekey, recaptchaapi,
 					smsauthapi, smsauthusername, smsauthpassword, smsapi, smsapplicationid,
@@ -163,5 +168,14 @@ public class SettingsServiceImpl implements SettingsService {
 		
 		return ResponseEntity.ok(s.removeprivatedata());
 	}
-	
+
+	@Override
+	public String returnServerkey() {
+		return serverkey;
+	}
+
+	@Override
+	public String returnServerpass() {
+		return serverpass;
+	}
 }

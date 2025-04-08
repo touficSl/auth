@@ -22,7 +22,7 @@ public class MenuAuthorization {
 	private String menuauthId;
 
 	@NotBlank
-	@Size(max = 700)
+	@Size(max = 450)
 	private String api;
 
 	private boolean isget;
@@ -31,6 +31,8 @@ public class MenuAuthorization {
 	private boolean isdelete;
 //	For specific requirements, for example if they want some API access to specific user roles and not for other role, like manager can change users mobile/email, but users can't
 	private boolean isconfiguration;
+	
+	private String accessibleaction;
 	
 	public Long getId() {
 		return id;
@@ -79,5 +81,11 @@ public class MenuAuthorization {
 	}
 	public void setMenuauthId(String menuauthId) {
 		this.menuauthId = menuauthId;
+	}
+	public String getAccessibleaction() {
+		return accessibleaction;
+	}
+	public void setAccessibleaction(String accessibleaction) {
+		this.accessibleaction = accessibleaction;
 	}
 }

@@ -1,7 +1,9 @@
 package com.service.auth.builder.response;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.service.auth.config.Utils;
 import com.service.auth.model.Menu;
 import com.service.auth.model.MenuRole;
 
@@ -30,6 +32,8 @@ public class MenuResponse {
 	private boolean show;
 	private boolean showdropdownlist;
 	private boolean opendropdownlist;
+
+	private ArrayList<String> accessibleactions;
 	
 	List<MenuResponse> submenu;
 
@@ -54,6 +58,7 @@ public class MenuResponse {
 		this.show = menu.isShow();
 		this.showdropdownlist = menu.isShowdropdownlist();
 		this.opendropdownlist = menu.isOpendropdownlist();
+		this.accessibleactions = Utils.convertStringToArrayList(menu.getAccessibleactions());
 	}
 
 	public MenuResponse(MenuRole menurole) {
@@ -73,6 +78,7 @@ public class MenuResponse {
 		this.show = menurole.getMenu().isShow();
 		this.showdropdownlist = menurole.getMenu().isShowdropdownlist();
 		this.opendropdownlist = menurole.getMenu().isOpendropdownlist();
+		this.accessibleactions = Utils.convertStringToArrayList(menurole.getAccessibleactions());
 	}
 
 	public String getName() {
@@ -201,5 +207,13 @@ public class MenuResponse {
 
 	public void setOpendropdownlist(boolean opendropdownlist) {
 		this.opendropdownlist = opendropdownlist;
+	}
+
+	public ArrayList<String> getAccessibleactions() {
+		return accessibleactions;
+	}
+
+	public void setAccessibleactions(ArrayList<String> accessibleactions) {
+		this.accessibleactions = accessibleactions;
 	}
 }

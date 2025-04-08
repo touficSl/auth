@@ -2,26 +2,23 @@ package com.service.auth.model;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@IdClass(MenuRole.class)
 @Table(name = "menu_role")
 public class MenuRole {
 
-    @ManyToOne
-    @JoinColumn(name = "menu_id", nullable = false)
     @EmbeddedId
-    private Menu menu;
+    private MenuRoleKey id;
 
-	@Size(max = 20)
-	@Id
-	private String user_role;
+    @ManyToOne
+    @MapsId("menuId")
+    @JoinColumn(name = "menu_id", nullable = false)
+    private Menu menu;
 
 	// allowed menu role actions
 	private boolean isget;
@@ -31,28 +28,22 @@ public class MenuRole {
 //	For specific requirements, for example if they want some API access to specific user roles and not for other role, like manager can change users mobile/email, but users can't
 	private boolean isconfiguration;
 
+    private String accessibleactions;
+
 	public MenuRole(Menu menu, @Size(max = 20) String user_role, boolean get, boolean post, boolean update,
-			boolean delete, boolean configuration) {
+			boolean delete, boolean configuration, String accessibleactions) {
 		super();
 		this.menu = menu;
-		this.user_role = user_role;
+		this.id = new MenuRoleKey(menu.getId(), user_role);
 		this.isget = get;
 		this.ispost = post;
 		this.isupdate = update;
 		this.isdelete = delete;
 		this.isconfiguration = configuration;
+		this.accessibleactions = accessibleactions;
 	}
 
 	public MenuRole() {
-	}
-
-	public String getUser_role() {
-		return user_role;
-	}
-
-
-	public void setUser_role(String user_role) {
-		this.user_role = user_role;
 	}
 
 	public Menu getMenu() {
@@ -101,5 +92,21 @@ public class MenuRole {
 
 	public void setConfiguration(boolean configuration) {
 		this.isconfiguration = configuration;
+	}
+
+	public MenuRoleKey getId() {
+		return id;
+	}
+
+	public void setId(MenuRoleKey id) {
+		this.id = id;
+	}
+
+	public String getAccessibleactions() {
+		return accessibleactions;
+	}
+
+	public void setAccessibleactions(String accessibleactions) {
+		this.accessibleactions = accessibleactions;
 	}
 }

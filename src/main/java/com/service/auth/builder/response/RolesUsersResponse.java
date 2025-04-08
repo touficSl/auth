@@ -6,6 +6,8 @@ import com.service.auth.model.Roles;
 import com.service.auth.model.Users;
 
 public class RolesUsersResponse {
+
+	private String name;
 	
 	private String role;
 	
@@ -13,17 +15,17 @@ public class RolesUsersResponse {
 
 	private Boolean require2fa;
 
-	private String position;
-	private String level;
 	private String parentrole;
 	
 	private List<Users> users;
 	
 	public RolesUsersResponse(Roles r, List<Users> userslist) {
 		super();
+		this.name = r.getName();
 		this.role = r.getUser_role();
 		this.auth_type = r.getAuth_type();
 		this.require2fa = r.getRequire2fa();
+		this.parentrole =r.getParentrole();
 		this.users = userslist;
 	}
 
@@ -54,22 +56,6 @@ public class RolesUsersResponse {
 		this.require2fa = require2fa;
 	}
 
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
-	}
-
-	public String getLevel() {
-		return level;
-	}
-
-	public void setLevel(String level) {
-		this.level = level;
-	}
-
 	public String getParentrole() {
 		return parentrole;
 	}
@@ -84,5 +70,13 @@ public class RolesUsersResponse {
 
 	public void setUsers(List<Users> users) {
 		this.users = users;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

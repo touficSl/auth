@@ -127,8 +127,8 @@ public class RequestResponseLoggingFilter implements Filter {
             String token = req.getHeader("token"); 
 
 			String url = req.getRequestURL().toString();
-            ResponseEntity<?> auth = userService.validateToken(locale, token, username, url);
-            if (auth.getBody() instanceof Users) { // Success
+            ResponseEntity<?> spsaauth = userService.validateToken(locale, token, username, url);
+            if (spsaauth.getBody() instanceof Users) { // Success
 
 				chain.doFilter(request, response);
 				System.out.println("Logging Response : " + res.getContentType());
@@ -137,7 +137,7 @@ public class RequestResponseLoggingFilter implements Filter {
 
 			res.setContentType("application/json");
 			res.setStatus(HttpStatus.OK.value());
-			res.getWriter().write(Utils.convertObjectToJson(auth));
+			res.getWriter().write(Utils.convertObjectToJson(spsaauth));
 			return;
         }
         

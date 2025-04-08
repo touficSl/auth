@@ -2,6 +2,7 @@ package com.service.auth.config;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -13,6 +14,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.service.auth.builder.response.AuthTypeResponse;
 import com.service.auth.enumeration.AuthTypeEnum;
+import com.service.auth.model.Authorization;
 
 public class Utils {
 
@@ -27,15 +29,6 @@ public class Utils {
 			return null;
         SimpleDateFormat formatter = new SimpleDateFormat(dateformat);
         return formatter.format(date);
-	}
-
-	public static boolean isapiauthorized(String url, List<String> authorizedapis) {
-		if (url == null) 
-			return true;
-		for (String authapi : authorizedapis)
-			if (url.contains(authapi))
-				return true;
-		return false;
 	}
 
 	public static String convertObjectToJson(Object object) throws JsonProcessingException {
@@ -96,5 +89,57 @@ public class Utils {
         		return authType.isRequirepassword() ? true : false;
         }
 		return false;
+	}
+	
+	
+
+	public static boolean isapiauthorized(String url, String menuauthid, List<Authorization> authorizedapis) {
+    	if (url == null || authorizedapis == null || authorizedapis.size() == 0)
+    		return false;
+    	for (Authorization auth : authorizedapis) {
+    		if (url.contains(auth.getApi()) && menuauthid != null && auth.getMenuauthid().equals(menuauthid))
+    			return true;
+    		else if (url.contains(auth.getApi()))
+    			return true;
+    	}
+		return false;
+	}
+
+	public static ArrayList<String> convertStringToArrayList(String str) {
+		if (str == null)
+			return new ArrayList<String>();
+		if (str.isEmpty())
+			return new ArrayList<String>();
+
+//        String str = "addevidence,updateexpectedweight,updatereasonsolution"; // example
+        try {
+
+            ArrayList<String> list = new ArrayList<>();
+            Collections.addAll(list, str.split(",")); // Fastest method
+            return list;
+        	
+        } catch (Exception ex) {
+        	ex.printStackTrace();
+        }
+		return new ArrayList<String>();
+        
+	}
+
+	public static String convertArrayListToString(ArrayList<String> arraylist) {
+		if (arraylist == null)
+			return null;
+		if (arraylist.isEmpty())
+			return null;
+
+//        String str = "addevidence,updateexpectedweight,updatereasonsolution"; // example
+        try {
+
+            return String.join(",", arraylist);
+        	
+        } catch (Exception ex) {
+        	ex.printStackTrace();
+        }
+		return null;
+        
 	}
 }

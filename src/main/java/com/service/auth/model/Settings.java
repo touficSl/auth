@@ -45,7 +45,7 @@ public class Settings {
 	private String uaepasscallbackurl;
 	private String uaepassuserinfourl;
 	private String uaepassstate;
-	private String uaepassredirecturl;
+	private String uaepassspsaredirecturl;
 	private String uaepassauthurl;
 	private boolean uaepassuseeid;
 	
@@ -86,7 +86,7 @@ public class Settings {
 			String ldapbasedn, @NotBlank String apikey, @NotBlank String apisecret, @NotBlank String adminkey,
 			String jwtsecret, long jwtexpirationms, long jwtexpirationmsshort, long jwtexpirationmscode, boolean uaepassregisterrole,
 			String uaepassdefaultrole, String uaepassusername, String uaepasspassword, String uaepassendpoint,
-			String uaepasscallbackurl, String uaepassuserinfourl, String uaepassstate, String uaepassredirecturl,
+			String uaepasscallbackurl, String uaepassuserinfourl, String uaepassstate, String uaepassspsaredirecturl,
 			String uaepassauthurl, boolean uaepassuseeid, boolean passregisterrole, String passdefaultrole,
 			int maximuminvalidattempts, boolean recaptchavalidation, String recaptchasitekey, String recaptchaapi,
 			String smsauthapi, String smsauthusername, String smsauthpassword, String smsapi, String smsapplicationid,
@@ -113,7 +113,7 @@ public class Settings {
 		this.uaepasscallbackurl = uaepasscallbackurl;
 		this.uaepassuserinfourl = uaepassuserinfourl;
 		this.uaepassstate = uaepassstate;
-		this.uaepassredirecturl = uaepassredirecturl;
+		this.uaepassspsaredirecturl = uaepassspsaredirecturl;
 		this.uaepassauthurl = uaepassauthurl;
 		this.uaepassuseeid = uaepassuseeid;
 		this.passregisterrole = passregisterrole;
@@ -174,7 +174,7 @@ public class Settings {
 		this.uaepassendpoint = null;
 		this.uaepasscallbackurl = null;
 		this.uaepassauthurl = null;
-		this.uaepassredirecturl = null;
+		this.uaepassspsaredirecturl = null;
 		this.smsauthapi = null;
 		this.smsauthusername = null;
 		this.smsauthpassword = null;
@@ -272,8 +272,8 @@ public class Settings {
 		return uaepassstate;
 	}
 
-	public String getUaepassredirecturl() {
-		return uaepassredirecturl;
+	public String getUaepassspsaredirecturl() {
+		return uaepassspsaredirecturl;
 	}
 
 	public String getUaepassauthurl() {

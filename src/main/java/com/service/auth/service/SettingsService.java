@@ -17,4 +17,7 @@ public interface SettingsService {
 
 	ResponseEntity<?> update(Locale locale, @Valid UpdateSettingsRq request);
 
+	String returnServerkey();
+	String returnServerpass();
+
 }
