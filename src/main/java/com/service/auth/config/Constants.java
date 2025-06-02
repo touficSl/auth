@@ -3,7 +3,7 @@ package com.service.auth.config;
 public class Constants {
 
 
-	public static final String[] EXCLUDED_PATHS = {"/api/token/"};
+	public static final String[] EXCLUDED_PATHS = {"/api/token/", "/api/public/"};
 	public static final String ADMIN_PATH = "/api/admin/";
 
 	public static final String SUBJECT = "Auth - ";
@@ -36,4 +36,9 @@ public class Constants {
 	public static final String CONFIGURATION = "configuration";
 	public static final String GLOBAL = "global";
 	public static final String NO_TEAM = "No Team";
+	public static final String COMPLEX_DEFAULT_PASS = "REGUSDeFault#PASS";
+	public static final String DEFAULT_USER_ROLE = "User";
+	
+	public static final int FORGET_PASS = 1;
+	public static final int CHANGE_PASS = 2;
 }

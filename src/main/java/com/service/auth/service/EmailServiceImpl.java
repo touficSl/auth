@@ -30,11 +30,11 @@ public class EmailServiceImpl implements EmailService {
 	   	    Settings settings = settingsService.returndefaultSettings();
 			
 			Properties props = new Properties();
-			props.put("mail.smtp.starttls.enable", settings.isMailstarttlsenable());
+			props.put("mail.smtp.starttls.enable", settings.isMailstarttlsenable()+"");
 			props.put("mail.smtp.host", settings.getMailhost());
 			props.put("mail.smtp.port", settings.getMailport());
-		    props.put("mail.smtp.auth", settings.isMailauth());
-		    props.put("mail.smtp.ssl.protocols", "TLS2");
+		    props.put("mail.smtp.auth", settings.isMailauth()+"");
+		    props.put("mail.smtp.ssl.protocols", "TLSv1.2");
 	
 			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {

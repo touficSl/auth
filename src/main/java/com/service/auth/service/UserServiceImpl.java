@@ -665,8 +665,9 @@ public class UserServiceImpl implements UserService {
 			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("request_completed", locale)));
 
 		} catch (Exception e) {
+			System.out.println(">> Registration error, " + e.getMessage());
 			e.printStackTrace();
-			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale), 111));
+			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale) + " :: "+ e.getMessage(), 829));
 		}
 	}
 
