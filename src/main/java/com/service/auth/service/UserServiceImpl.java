@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -105,6 +106,10 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	TeamsRepository teamsRepository;
+
+	@Value("${spring.change.pass.url}") 
+	private String CHANGEPASSURL;
+	
 
 	@Override
 	public ResponseEntity<?> authenticate(Locale locale, LoginRequest loginRequest, boolean verifyotptoken, String device, String ip, HttpServletResponse response) {
@@ -591,8 +596,9 @@ public class UserServiceImpl implements UserService {
 
 		try {
 
-			if (!jwtUtils.validateJwtToken(changepasstoken, Constants.CHANGEPASS_TOKEN + username))
-				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("invalid_token", locale), 111));
+			if (!changepasstoken.equals("REGISTERNEWUSER_" + code))
+				if (!jwtUtils.validateJwtToken(changepasstoken, Constants.CHANGEPASS_TOKEN + username))
+					return ResponseEntity.ok(new MessageResponse(messageService.getMessage("invalid_token", locale), 111));
 
 			Optional<Users> userEntity = findByUsername(username);
 
@@ -1524,6 +1530,64 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale), 111));
+		}
+	}
+	
+	@Override
+	public ResponseEntity<?> registeruserchangepass(Locale locale, String username, String type, String recaptchaToken) {
+
+		try {
+
+	   	    Settings settings = settingsService.returndefaultSettings();
+			if (settings.isRecaptchavalidation() == true) {
+				ResponseEntity<?> verifycaptcha = googleRecaptchaService.verifyRecaptcha(locale, recaptchaToken);
+				if (verifycaptcha != null) 
+					return verifycaptcha;
+			}
+			
+			Optional<Users> userEntity = findByUsername(username);
+
+			if (!userEntity.isPresent())
+				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("user_not_exist", locale), 103));
+			Users user = userEntity.get();
+			
+			ResponseEntity<?> checkifauthorized = checkifauthorized(locale, user, 121);
+			if (checkifauthorized != null)
+				return checkifauthorized;
+
+			String msgBody = messageService.getMessage("registeruser_changepass_msg_body", locale);
+			String code = Utils.generate6Digits();
+			msgBody = msgBody.replace("#USERNAME#", user.getFirst_name());
+			msgBody = msgBody.replace("#CODE#", code);
+			msgBody = msgBody.replace("#CHANGEPASSURL#", CHANGEPASSURL.replace("#username#", user.getUsername()).replace("#otpcode#", code));
+			user.setChangepasswordcode(code);
+			usersRepository.save(user);
+	
+			if(type.equals(OTPTypeEnum.MAIL.name())) {
+				String subject = messageService.getMessage("set_password_subject", locale);
+				EmailDetailsRq rq = new EmailDetailsRq(user.getEmail(), msgBody, subject);
+				boolean sent = emailService.sendSimpleMail(rq);
+				
+				if (!sent)
+					return ResponseEntity.ok(new MessageResponse(messageService.getMessage("mail_error", locale), 123));
+				
+			} else if (type.equals(OTPTypeEnum.SMS.name())) {
+				
+				if (user.getMobile_no() == null || user.getMobile_no().isEmpty())
+					return ResponseEntity.ok(new MessageResponse(messageService.getMessage("empty_phone_nbre", locale), 124));
+	
+				SMSDetailsRq rq = new SMSDetailsRq(user.getMobile_no(), msgBody);
+				ResponseEntity<?> sendsms = smsService.sendSMS(locale, rq);
+				if (sendsms != null)
+					return sendsms;
+			} else
+				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("invalid_params", locale), 125));
+			
+			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("code_sent", locale)));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale), 126));
 		}
 	}
 

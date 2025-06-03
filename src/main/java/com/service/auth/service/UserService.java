@@ -95,4 +95,5 @@ public interface UserService {
 
 	ResponseEntity<?> childrolesuserslist(Locale locale, String serverkey, String serverpass, String parentrole);
 
+	ResponseEntity<?> registeruserchangepass(Locale locale, String username, String type, String recaptchaToken);
 }

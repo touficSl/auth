@@ -15,6 +15,7 @@ import com.service.auth.builder.request.RegisterRequest;
 import com.service.auth.builder.response.MessageResponse;
 import com.service.auth.config.Constants;
 import com.service.auth.enumeration.OTPTypeEnum;
+import com.service.auth.model.Users;
 import com.service.auth.service.MessageService;
 import com.service.auth.service.SettingsService;
 import com.service.auth.service.UserService;
@@ -54,7 +55,12 @@ public class PublicController {
 		request.setPassword(Constants.COMPLEX_DEFAULT_PASS);
 		request.setUser_role(Constants.DEFAULT_USER_ROLE);
 		request.setBypass3rdpartyauth(false);
-		userService.register(locale, request, true);
-		return userService.forgotpass(locale, request.getUsername(), OTPTypeEnum.MAIL.name(), request.getCaptchaToken());
+		ResponseEntity<?> result = userService.register(locale, request, true);
+		if (result.getBody() instanceof MessageResponse) { // Success
+			MessageResponse mr = (MessageResponse) result.getBody();
+			if (mr.getStatus().equals("177")) //user already exist
+				return result;
+		}
+		return userService.registeruserchangepass(locale, request.getUsername(), OTPTypeEnum.MAIL.name(), request.getCaptchaToken());
 	}
 }
