@@ -8,13 +8,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.regex.Pattern;
 
-import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.service.auth.builder.response.AuthTypeResponse;
 import com.service.auth.enumeration.AuthTypeEnum;
 import com.service.auth.model.Authorization;
+import com.service.auth.model.Users;
 
 public class Utils {
 
@@ -27,8 +28,22 @@ public class Utils {
 	public static String convertDateToString(Date date, String dateformat) {
 		if (date == null)
 			return null;
+        if (dateformat == null || dateformat.isEmpty())
+        	dateformat = Constants.DATE_FORMAT;
         SimpleDateFormat formatter = new SimpleDateFormat(dateformat);
         return formatter.format(date);
+	}
+
+	public static boolean isapiauthorized(String url, String menuauthid, List<Authorization> authorizedapis) {
+    	if (url == null || authorizedapis == null || authorizedapis.size() == 0)
+    		return false;
+    	for (Authorization auth : authorizedapis) {
+    		if (url.contains(auth.getApi()) && menuauthid != null && auth.getMenuauthid().equals(menuauthid))
+    			return true;
+    		else if (url.contains(auth.getApi()))
+    			return true;
+    	}
+		return false;
 	}
 
 	public static String convertObjectToJson(Object object) throws JsonProcessingException {
@@ -90,20 +105,6 @@ public class Utils {
         }
 		return false;
 	}
-	
-	
-
-	public static boolean isapiauthorized(String url, String menuauthid, List<Authorization> authorizedapis) {
-    	if (url == null || authorizedapis == null || authorizedapis.size() == 0)
-    		return false;
-    	for (Authorization auth : authorizedapis) {
-    		if (url.contains(auth.getApi()) && menuauthid != null && auth.getMenuauthid().equals(menuauthid))
-    			return true;
-    		else if (url.contains(auth.getApi()))
-    			return true;
-    	}
-		return false;
-	}
 
 	public static ArrayList<String> convertStringToArrayList(String str) {
 		if (str == null)
@@ -142,4 +143,18 @@ public class Utils {
 		return null;
         
 	}
+	
+	public static List<Users> handleSensitiveData(List<Users> userslist) {
+		for (Users user : userslist) 
+			user.setPassword(null);
+		
+		return userslist;
+	}
+
+    public static void systemlog(String logmsg, String type) {
+    	if (!Constants.IS_DEBUG_MODE) return;
+    	type = type == null || type.isEmpty() ? "info" : type;
+    	
+    	System.out.println("SPSALOG > " + Utils.convertDateToString(new Date(), null) + " > " + type.toUpperCase() + " > " + logmsg);
+    }
 }

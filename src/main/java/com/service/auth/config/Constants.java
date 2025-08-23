@@ -2,6 +2,7 @@ package com.service.auth.config;
 
 public class Constants {
 
+	public static boolean IS_DEBUG_MODE = true;
 
 	public static final String[] EXCLUDED_PATHS = {"/api/token/", "/api/public/"};
 	public static final String ADMIN_PATH = "/api/admin/";

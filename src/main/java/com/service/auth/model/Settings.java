@@ -75,6 +75,8 @@ public class Settings {
 	private String mailsupport;
 
 	private boolean isdefault;
+	
+    private boolean isdebugmode;
 
     @Transient
     private boolean canupdate;
@@ -182,7 +184,6 @@ public class Settings {
 		this.uaepassusername = null;
 		this.mailfrom = null;
 		this.mailhost = null;
-		this.uaepassuserinfourl = null;
 		
 		return this;
 	}
@@ -374,5 +375,13 @@ public class Settings {
 
 	public void setCanupdate(boolean canupdate) {
 		this.canupdate = canupdate;
+	}
+
+	public boolean isIsdebugmode() {
+		return isdebugmode;
+	}
+
+	public void setIsdebugmode(boolean isdebugmode) {
+		this.isdebugmode = isdebugmode;
 	}
 }

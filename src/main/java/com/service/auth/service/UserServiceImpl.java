@@ -303,7 +303,7 @@ public class UserServiceImpl implements UserService {
 	
 			if(type.equals(OTPTypeEnum.MAIL.name())) {
 				String subject = messageService.getMessage("otp_subject", locale);
-				EmailDetailsRq rq = new EmailDetailsRq(user.getEmail(), msgBody, subject);
+				EmailDetailsRq rq = new EmailDetailsRq(user.getEmail(), msgBody, msgBody, subject);
 				boolean sent = emailService.sendSimpleMail(rq);
 				
 				if (!sent)
@@ -563,7 +563,7 @@ public class UserServiceImpl implements UserService {
 	
 			if(type.equals(OTPTypeEnum.MAIL.name())) {
 				String subject = messageService.getMessage("reset_password_subject", locale);
-				EmailDetailsRq rq = new EmailDetailsRq(user.getEmail(), msgBody, subject);
+				EmailDetailsRq rq = new EmailDetailsRq(user.getEmail(), msgBody, msgBody, subject);
 				boolean sent = emailService.sendSimpleMail(rq);
 				
 				if (!sent)
@@ -957,7 +957,7 @@ public class UserServiceImpl implements UserService {
 			usersRepository.save(user);
 			
 			String subject = messageService.getMessage("change_email_subject", locale);
-			EmailDetailsRq rq = new EmailDetailsRq(newemail, msgBody, subject);
+			EmailDetailsRq rq = new EmailDetailsRq(newemail, msgBody, msgBody, subject);
 			boolean sent = emailService.sendSimpleMail(rq);
 			
 			if (!sent)
@@ -1565,7 +1565,7 @@ public class UserServiceImpl implements UserService {
 	
 			if(type.equals(OTPTypeEnum.MAIL.name())) {
 				String subject = messageService.getMessage("set_password_subject", locale);
-				EmailDetailsRq rq = new EmailDetailsRq(user.getEmail(), msgBody, subject);
+				EmailDetailsRq rq = new EmailDetailsRq(user.getEmail(), msgBody, msgBody, subject);
 				boolean sent = emailService.sendSimpleMail(rq);
 				
 				if (!sent)

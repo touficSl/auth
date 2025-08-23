@@ -14,15 +14,18 @@ public class EmailDetailsRq {
 	private String subject;
     @JsonDeserialize(using = SanitizedStringDeserializer.class)
 	private String captchaToken;
+    @JsonDeserialize(using = SanitizedStringDeserializer.class)
+	private String msgBodyAr;
 	
 	public EmailDetailsRq() {
 		super();
 	}
-	
-	public EmailDetailsRq(String recipient, String msgBody, String subject) {
+
+	public EmailDetailsRq(String recipient, String msgBody, String msgBodyAr, String subject) {
 		super();
 		this.recipient = recipient;
 		this.msgBody = msgBody;
+		this.msgBodyAr = msgBodyAr;
 		this.subject = subject;
 	}
 
@@ -46,5 +49,13 @@ public class EmailDetailsRq {
 	}
 	public String getCaptchaToken() {
 		return captchaToken;
+	}
+
+	public String getMsgBodyAr() {
+		return msgBodyAr;
+	}
+
+	public void setMsgBodyAr(String msgBodyAr) {
+		this.msgBodyAr = msgBodyAr;
 	}
 }

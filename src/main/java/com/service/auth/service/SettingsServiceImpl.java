@@ -108,7 +108,7 @@ public class SettingsServiceImpl implements SettingsService {
 	private String uaepassuserinfourl;
 	@Value("${spring.uaepass.state}") 
 	private String uaepassstate;
-	@Value("${spring.uaepass.redirect.url}") 
+	@Value("${spring.uaepass.spsa.redirect.url}") 
 	private String uaepassspsaredirecturl;
 	@Value("${spring.uaepass.auth.url}") 
 	private String uaepassauthurl;
