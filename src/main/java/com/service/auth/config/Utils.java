@@ -155,6 +155,6 @@ public class Utils {
     	if (!Constants.IS_DEBUG_MODE) return;
     	type = type == null || type.isEmpty() ? "info" : type;
     	
-    	System.out.println("SPSALOG > " + Utils.convertDateToString(new Date(), null) + " > " + type.toUpperCase() + " > " + logmsg);
+    	System.out.println("LOG > " + Utils.convertDateToString(new Date(), null) + " > " + type.toUpperCase() + " > " + logmsg);
     }
 }

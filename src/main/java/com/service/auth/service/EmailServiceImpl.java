@@ -97,7 +97,7 @@ public class EmailServiceImpl implements EmailService {
             htmlPart.setContent(emailTemplate, "text/html; charset=UTF-8");
             multipart.addBodyPart(htmlPart);
             
-            // Add SPSA logo attachment
+            // Add logo attachment
             String logo = "https://internationalmissiondevie.org/images/mission-de-vie-logo.jpg";
             try {
                 MimeBodyPart imagePart = new MimeBodyPart();
@@ -107,10 +107,10 @@ public class EmailServiceImpl implements EmailService {
                 imagePart.setDataHandler(new DataHandler(imageSource));
                 imagePart.setHeader("Content-ID", "<attached_image>");
                 imagePart.setDisposition(MimeBodyPart.INLINE);
-                imagePart.setFileName("spsa_logo.png");
+                imagePart.setFileName("logo.png");
                 multipart.addBodyPart(imagePart);
             } catch (Exception imgEx) {
-                Utils.systemlog("Error attaching SPSA logo: " + imgEx.getMessage(), null);
+                Utils.systemlog("Error attaching logo: " + imgEx.getMessage(), null);
             }
            
             // Set the multipart content

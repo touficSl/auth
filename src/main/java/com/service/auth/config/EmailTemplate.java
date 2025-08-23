@@ -302,7 +302,7 @@ public class EmailTemplate {
                         <!-- Header with Logo -->
                         <tr>
                             <td class="header-section" align="center" style="background-color: #f9f9f9; padding: 25px; border-bottom: 3px solid #0a8043;">
-                                <img src="cid:attached_image" alt="Mission De Vie" class="header-logo" width="350" style="max-width: 350px; height: auto; display: block; margin: 0 auto;">
+                                <img src="cid:attached_image" alt="Mission De Vie" class="header-logo" width="250" style="max-width: 250px; height: auto; display: block; margin: 0 auto;">
                             </td>
                         </tr>
                         
