@@ -37,7 +37,6 @@ public class Constants {
 	public static final String CONFIGURATION = "configuration";
 	public static final String GLOBAL = "global";
 	public static final String NO_TEAM = "No Team";
-	public static final String COMPLEX_DEFAULT_PASS = "REGUSDeFault#PASS";
 	public static final String DEFAULT_USER_ROLE = "User";
 	
 	public static final int FORGET_PASS = 1;

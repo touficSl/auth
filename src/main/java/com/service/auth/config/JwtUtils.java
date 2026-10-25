@@ -45,12 +45,10 @@ public class JwtUtils {
 
 	public boolean validateJwtToken(String token, String username) {
 		try {
-			Jwts.parserBuilder().setSigningKey(key()).build().parse(token);
-			
-			if (!getUserNameFromJwtToken(token).equals(username))
-				return false;
-			
-			return true;
+			// parseClaimsJws only accepts signed tokens (rejects unsigned "alg: none" tokens)
+			String subject = Jwts.parserBuilder().setSigningKey(key()).build().parseClaimsJws(token).getBody().getSubject();
+
+			return subject != null && subject.equals(username);
 			
 		} catch (MalformedJwtException e) {
 			logger.error("Invalid JWT token: {}", e.getMessage());

@@ -37,6 +37,7 @@ import com.service.auth.builder.response.TeamsRolesUsersResponse;
 import com.service.auth.builder.response.TokenResponse;
 import com.service.auth.builder.response.UserResponse;
 import com.service.auth.builder.response.VerifyUsernameResponse;
+import com.service.auth.config.CodeAttemptLimiter;
 import com.service.auth.config.Constants;
 import com.service.auth.config.JwtUtils;
 import com.service.auth.config.Utils;
@@ -107,6 +108,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	TeamsRepository teamsRepository;
 
+	@Autowired
+	CodeAttemptLimiter codeAttemptLimiter;
+
 	@Value("${spring.change.pass.url}") 
 	private String CHANGEPASSURL;
 	
@@ -159,14 +163,15 @@ public class UserServiceImpl implements UserService {
 	
 				if (role != null && Utils.isrequiredpass(role.getAuth_type())) {
 					if (user.getPassword() != null && encoder.matches(loginRequest.getPassword(), user.getPassword())) {
-						if (!role.getRequire2fa()) {
-							return authuser(device, ip, user, locale, response, role);
-						}
+						// reset failed attempts on every successful login, so old failures do not add up to a lock
 						if (user.getInvalidattempts() > 0) {
 							user.setInvalidattempts(0);
 							usersRepository.save(user);
 						}
-							
+						if (!role.getRequire2fa()) {
+							return authuser(device, ip, user, locale, response, role);
+						}
+
 						return ResponseEntity.ok(new JwtResponse(jwtUtils.generateJwtToken(Constants.VERIFY_OTP_TOKEN + loginRequest.getUsername(), null),
 							user.getUser_id(), user.getUsername(), user.getEmail(), user.getUser_role(), sendsms, expirydate, getuserfullname(user, locale), getuserfullnamear(user, locale), role));
 					} else {
@@ -246,7 +251,12 @@ public class UserServiceImpl implements UserService {
 						if (t.getRevoked_date_time() != null)
 							return ResponseEntity.ok(new MessageResponse(messageService.getMessage("revoked_token", locale), 444));
 					}
-				
+
+				// Every token issued by this service is stored, a validly signed token that is not stored was not issued here
+				// (forged with a leaked secret) or was already replaced by a refresh
+				if (tokens == null || tokens.size() == 0)
+					return ResponseEntity.ok(new MessageResponse(messageService.getMessage("invalid_token", locale), 104));
+
 				Optional<Users> userEntity = findByUsername(username);
 				if (!userEntity.isPresent())
 					return ResponseEntity.ok(new MessageResponse(messageService.getMessage("user_not_exist", locale), 103));
@@ -300,6 +310,7 @@ public class UserServiceImpl implements UserService {
 			msgBody = msgBody.replace("#OTP#", otp);
 			user.setOtp(otp);
 			usersRepository.save(user);
+			codeAttemptLimiter.reset(CodeAttemptLimiter.OTP, username);
 	
 			if(type.equals(OTPTypeEnum.MAIL.name())) {
 				String subject = messageService.getMessage("otp_subject", locale);
@@ -344,9 +355,15 @@ public class UserServiceImpl implements UserService {
 			if (user.getOtp() == null)
 				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("resend_code", locale), 113));
 			
-			if (!user.getOtp().equals(otp))
+			if (!Utils.secureEquals(user.getOtp(), otp)) {
+				if (codeAttemptLimiter.registerFailure(CodeAttemptLimiter.OTP, username)) {
+					user.setOtp(null); // too many wrong guesses, a new code must be requested
+					usersRepository.save(user);
+				}
 				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("invalid_code", locale), 114));
-			
+			}
+
+			codeAttemptLimiter.reset(CodeAttemptLimiter.OTP, username);
 			user.setOtp(null);
 			usersRepository.save(user);
 
@@ -399,15 +416,24 @@ public class UserServiceImpl implements UserService {
 					if (t.getRevoked_date_time() != null)
 						return ResponseEntity.ok(new MessageResponse(messageService.getMessage("revoked_token", locale), 110));
 				}
-			
+
 			if (!jwtUtils.validateJwtToken(token, Constants.REFRESH_TOKEN + username))
 				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("invalid_token", locale), 111));
-				
+
+			// Refresh token must be the current one stored for the session, old (already rotated) refresh tokens are rejected
+			if (tokens == null || tokens.size() == 0)
+				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("invalid_token", locale), 111));
+
 			Optional<Users> userEntity = findByUsername(username);
 			if (!userEntity.isPresent())
 				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("user_not_exist", locale), 112));
-	
+
 			Users user = userEntity.get();
+			if (!user.isEnable())
+				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("invalid_creds", locale), 119));
+
+			if (user.isLocked())
+				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("account_locked", locale), 116));
 			String key =  Base64.getEncoder().encodeToString(username.getBytes());
 			String refreshtoken = jwtUtils.generateJwtToken(Constants.REFRESH_TOKEN + username, false);
 			String accesstoken = jwtUtils.generateJwtToken(Constants.ACCESS_TOKEN + username, true);
@@ -560,6 +586,7 @@ public class UserServiceImpl implements UserService {
 			msgBody = msgBody.replace("#CODE#", code);
 			user.setChangepasswordcode(code);
 			usersRepository.save(user);
+			codeAttemptLimiter.reset(CodeAttemptLimiter.CHANGE_PASS, username);
 	
 			if(type.equals(OTPTypeEnum.MAIL.name())) {
 				String subject = messageService.getMessage("reset_password_subject", locale);
@@ -620,10 +647,16 @@ public class UserServiceImpl implements UserService {
 			
 			if (user.getChangepasswordcode() == null)
 				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("resend_code", locale), 129));
-			
-			if (!user.getChangepasswordcode().equals(code))
-				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("invalid_code", locale), 130));
 
+			if (!Utils.secureEquals(user.getChangepasswordcode(), code)) {
+				if (codeAttemptLimiter.registerFailure(CodeAttemptLimiter.CHANGE_PASS, username)) {
+					user.setChangepasswordcode(null); // too many wrong guesses, a new code must be requested
+					usersRepository.save(user);
+				}
+				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("invalid_code", locale), 130));
+			}
+
+			codeAttemptLimiter.reset(CodeAttemptLimiter.CHANGE_PASS, username);
 			user.setInvalidattempts(0);
 			user.setLocked(false);
 			user.setChangepasswordcode(null);
@@ -673,7 +706,8 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception e) {
 			System.out.println(">> Registration error, " + e.getMessage());
 			e.printStackTrace();
-			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale) + " :: "+ e.getMessage(), 829));
+			// do not return the internal exception message to the client (it can expose database / SQL details)
+			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale), 829));
 		}
 	}
 
@@ -955,6 +989,7 @@ public class UserServiceImpl implements UserService {
 			msgBody = msgBody.replace("#CODE#", code);
 			user.setChangeemailcode(newemail + Constants.SEPARATOR + code);
 			usersRepository.save(user);
+			codeAttemptLimiter.reset(CodeAttemptLimiter.CHANGE_EMAIL, username);
 			
 			String subject = messageService.getMessage("change_email_subject", locale);
 			EmailDetailsRq rq = new EmailDetailsRq(newemail, msgBody, msgBody, subject);
@@ -982,9 +1017,15 @@ public class UserServiceImpl implements UserService {
 
 			Users user = userEntity.get();
 			String verifyemailandcode = newemail + Constants.SEPARATOR + code;
-			if (user.getChangeemailcode() == null || !verifyemailandcode.equals(user.getChangeemailcode()))
+			if (user.getChangeemailcode() == null || !Utils.secureEquals(user.getChangeemailcode(), verifyemailandcode)) {
+				if (user.getChangeemailcode() != null && codeAttemptLimiter.registerFailure(CodeAttemptLimiter.CHANGE_EMAIL, username)) {
+					user.setChangeemailcode(null); // too many wrong guesses, a new code must be requested
+					usersRepository.save(user);
+				}
 				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("invalid_code", locale), 114));
-				
+			}
+
+			codeAttemptLimiter.reset(CodeAttemptLimiter.CHANGE_EMAIL, username);
 			user.setChangeemailcode(null);
 			user.setEmail(newemail);
 			usersRepository.save(user);
@@ -1013,6 +1054,7 @@ public class UserServiceImpl implements UserService {
 			msgBody = msgBody.replace("#CODE#", code);
 			user.setChangemobilecode(newmobile + Constants.SEPARATOR + code);
 			usersRepository.save(user);
+			codeAttemptLimiter.reset(CodeAttemptLimiter.CHANGE_MOBILE, username);
 
 			SMSDetailsRq rq = new SMSDetailsRq(newmobile, msgBody);
 			ResponseEntity<?> sendsms = smsService.sendSMS(locale, rq);
@@ -1038,10 +1080,16 @@ public class UserServiceImpl implements UserService {
 
 			Users user = userEntity.get();
 			String verifyemailandcode = newmobile + Constants.SEPARATOR + code;
-			if (user.getChangemobilecode() == null || !verifyemailandcode.equals(user.getChangemobilecode()))
+			if (user.getChangemobilecode() == null || !Utils.secureEquals(user.getChangemobilecode(), verifyemailandcode)) {
+				if (user.getChangemobilecode() != null && codeAttemptLimiter.registerFailure(CodeAttemptLimiter.CHANGE_MOBILE, username)) {
+					user.setChangemobilecode(null); // too many wrong guesses, a new code must be requested
+					usersRepository.save(user);
+				}
 				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("invalid_code", locale), 114));
-				
-			user.setChangeemailcode(null);
+			}
+
+			codeAttemptLimiter.reset(CodeAttemptLimiter.CHANGE_MOBILE, username);
+			user.setChangemobilecode(null); // was clearing the email code by mistake, leaving the mobile code reusable
 			user.setMobile_no(newmobile);
 			usersRepository.save(user);
 
@@ -1084,6 +1132,11 @@ public class UserServiceImpl implements UserService {
 		        String decodedusername = new String(decodedBytes);
 				Optional<Users> userEntityeu = findByUsername(decodedusername);
 				if (userEntityeu.isPresent()) {
+					// Only accounts whose role authenticates with UAEPASS can be bound this way,
+					// otherwise any UAEPASS login could take over a PASSWORD / LDAP account (e.g. admin)
+					Roles eurole = rolesRepository.findByUserRole(userEntityeu.get().getUser_role());
+					if (eurole == null || !AuthTypeEnum.UAEPASS.name().equals(eurole.getAuth_type()))
+						return ResponseEntity.ok(new MessageResponse(messageService.getMessage("not_authorized_msg", locale), 121));
 					user = userEntityeu.get();
 					username = decodedusername;
 				}
@@ -1184,7 +1237,7 @@ public class UserServiceImpl implements UserService {
 				boolean sendsms = false;
 				String expirydate = Utils.convertDateToString(jwtUtils.returnJwtExpriyDate(true), Constants.DATETIME_FORMAT);
 				return ResponseEntity.ok(new JwtResponse(jwtUtils.generateJwtToken(Constants.VERIFY_OTP_TOKEN + username, null),
-						newuser.getUser_id(), newuser.getUsername(), newuser.getEmail(), newuser.getUser_role(), sendsms, expirydate, getuserfullname(user, locale), getuserfullnamear(user, locale), role));
+						newuser.getUser_id(), newuser.getUsername(), newuser.getEmail(), newuser.getUser_role(), sendsms, expirydate, getuserfullname(newuser, locale), getuserfullnamear(newuser, locale), role));
 			}
 	
 			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("user_not_exist", locale), 103));
@@ -1486,10 +1539,10 @@ public class UserServiceImpl implements UserService {
 	public ResponseEntity<?> teamroleuserslist(Locale locale, String serverkey, String serverpass, String team, String role) {
 
 		try {
-			if (!settingsService.returnServerkey().equals(serverkey) ||
-					!settingsService.returnServerpass().equals(serverpass))
+			if (!Utils.secureEquals(settingsService.returnServerkey(), serverkey) ||
+					!Utils.secureEquals(settingsService.returnServerpass(), serverpass))
 				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale), 111));
-				
+
 			if (team != null) {
 				Optional<Teams> teamopt = teamsRepository.findById(team);
 				if (teamopt.isPresent()) {
@@ -1562,6 +1615,7 @@ public class UserServiceImpl implements UserService {
 			msgBody = msgBody.replace("#CHANGEPASSURL#", CHANGEPASSURL.replace("#username#", user.getUsername()).replace("#otpcode#", code));
 			user.setChangepasswordcode(code);
 			usersRepository.save(user);
+			codeAttemptLimiter.reset(CodeAttemptLimiter.CHANGE_PASS, username);
 	
 			if(type.equals(OTPTypeEnum.MAIL.name())) {
 				String subject = messageService.getMessage("set_password_subject", locale);

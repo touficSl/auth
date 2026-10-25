@@ -1,11 +1,14 @@
 package com.service.auth.config;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.regex.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
@@ -19,10 +22,25 @@ import com.service.auth.model.Users;
 
 public class Utils {
 
+	private static final SecureRandom SECURE_RANDOM = new SecureRandom();
+
 	public static String generate6Digits() {
-	    Random rnd = new Random();
-	    int number = rnd.nextInt(999999);
+	    int number = SECURE_RANDOM.nextInt(1000000);
 	    return String.format("%06d", number);
+	}
+
+	// Random unguessable password, used for accounts that must set their own password later
+	public static String generateRandomPassword() {
+		byte[] bytes = new byte[24];
+		SECURE_RANDOM.nextBytes(bytes);
+		return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);
+	}
+
+	// Constant-time comparison for secrets and codes, false if either side is null or the expected value is empty
+	public static boolean secureEquals(String expected, String provided) {
+		if (expected == null || provided == null || expected.isEmpty())
+			return false;
+		return MessageDigest.isEqual(expected.getBytes(StandardCharsets.UTF_8), provided.getBytes(StandardCharsets.UTF_8));
 	}
 
 	public static String convertDateToString(Date date, String dateformat) {

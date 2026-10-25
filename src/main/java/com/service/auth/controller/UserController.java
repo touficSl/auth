@@ -1,10 +1,11 @@
 package com.service.auth.controller;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,13 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.service.auth.builder.request.RegisterRequest;
 import com.service.auth.builder.request.UpdateUserReq;
+import com.service.auth.builder.response.MessageResponse;
 import com.service.auth.config.Constants;
+import com.service.auth.service.MessageService;
 import com.service.auth.service.TokensService;
 import com.service.auth.service.UserService;
 
 import jakarta.validation.Valid;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -29,7 +31,10 @@ public class UserController {
 
 	@Autowired
 	private TokensService tokenService;
-	
+
+    @Autowired
+    private MessageService messageService;
+
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> register(@RequestHeader(name = "Accept-Language", required = false) Locale locale,
 									  @Valid @RequestBody RegisterRequest request) {
@@ -132,6 +137,16 @@ public class UserController {
 										 @RequestHeader(name = "refreshtoken", required = true) String refreshtoken, 
 										 @RequestHeader(name = "refreshkey", required = true) String refreshkey,
 										 @RequestHeader(name = "username", required = true) String username) {
+
+		// a user can only revoke his own sessions (refreshkey is the base64 of the token owner username)
+		String tokenowner = null;
+		try {
+			tokenowner = new String(Base64.getDecoder().decode(refreshkey), StandardCharsets.UTF_8);
+		} catch (IllegalArgumentException e) {
+			// invalid base64, handled below
+		}
+		if (tokenowner == null || !tokenowner.equals(username))
+			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("not_authorized_msg", locale), 139));
 
 		return tokenService.revoke(locale, refreshtoken, refreshkey, Constants.FORCE_REVOKE);
 	}

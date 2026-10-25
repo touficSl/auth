@@ -4,7 +4,6 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +20,6 @@ import com.service.auth.service.UserService;
 
 import jakarta.validation.Valid;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/admin")
 public class AdminController {
@@ -91,7 +89,7 @@ public class AdminController {
 								  @RequestHeader(name = "descending", required = false) boolean descending,
 						          @RequestHeader(name = "draw", required = true) int draw) {
 
-    	if (sortcolumn.equals("user_role"))
+    	if ("user_role".equals(sortcolumn))
     		sortcolumn = "userrole";
 		return userService.userlist(locale, page, size, search, sortcolumn, descending, draw);
 	}

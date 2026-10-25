@@ -2,6 +2,7 @@ package com.service.auth.service;
 
 import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.ldap.core.support.LdapContextSource;
+import org.springframework.ldap.support.LdapEncoder;
 
 import com.service.auth.config.LdapUser;
 
@@ -31,7 +32,8 @@ public class MyLdapService {
 
     public List<LdapUser> searchUsers(String username, String baseDn) {
         List<LdapUser> users = new ArrayList<>();
-        String filter = String.format("(&(objectClass=user)(sAMAccountName=%s))", username);
+        // escape the username to prevent LDAP filter injection (e.g. "*" or ")(")
+        String filter = String.format("(&(objectClass=user)(sAMAccountName=%s))", LdapEncoder.filterEncode(username));
 
         try {
             // Use SearchControls to set the search parameters

@@ -1,5 +1,6 @@
 package com.service.auth;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -25,12 +26,16 @@ public class SBApplication {
 		SpringApplication.run(SBApplication.class, args);
 	}
 
+	// Comma separated list of allowed front end origins, set it in production (e.g. https://app.example.com), default keeps the old "*" behaviour
+	@Value("${spring.cors.allowed.origins:*}")
+	private String[] corsAllowedOrigins;
+
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("*");
+				registry.addMapping("/**").allowedOrigins(corsAllowedOrigins).maxAge(3600);
 			}
 		};
 	}

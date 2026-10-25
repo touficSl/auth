@@ -104,7 +104,7 @@ public class RequestResponseLoggingFilter implements Filter {
        		String adminkey = settings.getAdminkey();
 
        		if (requestURI.contains(Constants.ADMIN_PATH))
-	            if (adminkeyh == null || !adminkeyh.equals(adminkey)) {
+	            if (!Utils.secureEquals(adminkey, adminkeyh)) {
 	
 	       			MessageResponse errorResponse = new MessageResponse(messageService.getMessage("not_authorized_msg", locale), 139);
 	
@@ -116,8 +116,11 @@ public class RequestResponseLoggingFilter implements Filter {
 	            }
        		
        		// Authorize specific APIs - Check if the request URI matches any of the excluded paths
+            // match on the path start (after the context path) so a URI that only contains "/api/token/" somewhere does not skip the token check
+            String contextPath = req.getContextPath() == null ? "" : req.getContextPath();
+            String path = requestURI.startsWith(contextPath) ? requestURI.substring(contextPath.length()) : requestURI;
             for (String excludedPath : Constants.EXCLUDED_PATHS) {
-                if (requestURI.contains(excludedPath)) {
+                if (path.startsWith(excludedPath)) {
                     chain.doFilter(request, response);
                     return;
                 }

@@ -3,6 +3,8 @@ package com.service.auth.model;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,6 +35,8 @@ public class Users {
 	@Size(max = 300)
 	private String username;
 
+	// Secrets below are never serialized in API responses (token verify, role users lists, ...)
+	@JsonIgnore
 	private String password;
 
 	@NotBlank
@@ -59,15 +63,19 @@ public class Users {
 	private String last_name_ar;
 
 	private Date date_time;
-	
+
+	@JsonIgnore
 	private String otp;
 
+	@JsonIgnore
 	@Size(max = 10)
 	private String changepasswordcode;
 
+	@JsonIgnore
 	@Size(max = 600)
 	private String changeemailcode;
 
+	@JsonIgnore
 	@Size(max = 600)
 	private String changemobilecode;
 	

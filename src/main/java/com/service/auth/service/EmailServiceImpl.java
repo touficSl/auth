@@ -45,9 +45,8 @@ public class EmailServiceImpl implements EmailService {
             props.put("mail.smtp.timeout", "10000");
             props.put("mail.smtp.writetimeout", "10000");
      
-            // Optional: Add debug for authentication flow
-            props.put("mail.debug.auth", "true");
-     
+            // Note: "mail.debug.auth" / session debug are disabled, they print the SMTP AUTH exchange (base64 credentials) to the logs
+
             // Print debug info
             Utils.systemlog("SMTP Properties:", null);
             props.forEach((k, v) -> Utils.systemlog("  " + k + " = " + v, null));
@@ -56,7 +55,7 @@ public class EmailServiceImpl implements EmailService {
             Utils.systemlog("  Password = >" + (settings.getMailpassword() != null ? "*****" : "null") + "<", null);
      
             Session session = Session.getInstance(props);
-            session.setDebug(true);
+            session.setDebug(false);
      
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(settings.getMailfrom()));

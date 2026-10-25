@@ -4,7 +4,6 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.service.auth.builder.request.RegisterRequest;
 import com.service.auth.builder.response.MessageResponse;
 import com.service.auth.config.Constants;
+import com.service.auth.config.Utils;
 import com.service.auth.enumeration.OTPTypeEnum;
 import com.service.auth.model.Users;
 import com.service.auth.service.MessageService;
@@ -22,7 +22,6 @@ import com.service.auth.service.UserService;
 
 import jakarta.validation.Valid;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/public")
 public class PublicController {
@@ -48,11 +47,13 @@ public class PublicController {
 		// allow user to set his account password to see his donations that he did on the projects
 		// redirect user to otp change password page he enters the otp from his email and change his password
 
-		if (!settingsService.returnServerkey().equals(serverkey) ||
-				!settingsService.returnServerpass().equals(serverpass))
+		if (!Utils.secureEquals(settingsService.returnServerkey(), serverkey) ||
+				!Utils.secureEquals(settingsService.returnServerpass(), serverpass))
 			return ResponseEntity.ok(new MessageResponse(messageService.getMessage("exception_case", locale), 111));
 
-		request.setPassword(Constants.COMPLEX_DEFAULT_PASS);
+		// random password per user (was a shared hard-coded default anyone could log in with),
+		// the user sets his own password using the code sent by email
+		request.setPassword(Utils.generateRandomPassword());
 		request.setUser_role(Constants.DEFAULT_USER_ROLE);
 		request.setBypass3rdpartyauth(false);
 		ResponseEntity<?> result = userService.register(locale, request, true);

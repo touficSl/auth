@@ -24,6 +24,9 @@ public class LdapServiceImpl implements LdapService{
 
 	public ResponseEntity<?> authenticate(Locale locale, String username, String password) {
 		try {
+			// an empty password makes an LDAP "unauthenticated bind" which some servers accept as a success
+			if (username == null || username.trim().isEmpty() || password == null || password.isEmpty())
+				return ResponseEntity.ok(new MessageResponse(messageService.getMessage("user_not_exist", locale), 301));
 
 	   	    Settings settings = settingsService.returndefaultSettings();
 	        MyLdapService ldapService = new MyLdapService(settings.getLdapurl(), settings.getLdapbasedn(), username + settings.getLdapdomain(), password);
